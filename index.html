@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Transversal Lab</title>
+  <style>
+    :root{
+      --bg:#f6faf9;--panel:#fff;--text:#17312e;--muted:#647773;
+      --line:#dce9e6;--accent:#2f7d73;--soft:#e9f4f1;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
+    header{padding:34px 20px 18px;max-width:1120px;margin:auto}
+    .top{display:flex;justify-content:space-between;gap:24px;align-items:flex-start}
+    .brand{font-size:14px;font-weight:800;letter-spacing:.06em;color:var(--accent)}
+    h1{margin:10px 0 8px;font-size:34px;line-height:1.12}
+    .lead{max-width:780px;color:var(--muted);font-size:16px;line-height:1.6}
+    .lang-wrap{min-width:96px}
+    .root-actions{display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap}.tl-role-nav-wrap{padding-bottom:2px}
+    .lang-label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}
+    select{width:100%;border:1px solid var(--line);border-radius:10px;padding:9px 12px;background:#fff;color:var(--text)}
+    main{max-width:1120px;margin:0 auto;padding:0 20px 48px}
+    .notice{background:var(--soft);border:1px solid #cfe5e1;border-radius:16px;padding:18px 20px;margin:18px 0 28px;line-height:1.55}
+    .notice strong{display:block;margin-bottom:6px}
+    .grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+    .card{grid-column:span 2;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px;display:flex;flex-direction:column;min-height:282px}
+    .card:nth-child(4){grid-column:2 / span 2}
+    .card:nth-child(5){grid-column:4 / span 2}
+    .num{font-size:12px;color:var(--accent);font-weight:800;letter-spacing:.05em;text-transform:uppercase}
+    .card h2{margin:8px 0 8px;font-size:22px;line-height:1.22;min-height:54px}
+    .tag{display:block;padding:7px 10px;border-radius:999px;background:#f0f6f5;color:#355b56;font-size:12px;line-height:1.4;margin:0 0 12px}
+    .card p{color:var(--muted);line-height:1.55;margin:0 0 16px;flex:1}
+    .go{display:block;text-align:center;text-decoration:none;background:var(--accent);color:#fff;padding:11px 14px;border-radius:10px;font-weight:750}
+    .go:hover{background:#286d64}
+    .profile{margin-top:28px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px}
+    .profile h2{margin-top:0}
+    .profile-intro{color:var(--muted);line-height:1.6}
+    .row{display:grid;grid-template-columns:220px 1fr;gap:14px;padding:13px 0;border-top:1px solid var(--line);line-height:1.5}
+    .row:first-of-type{border-top:0}
+    footer{max-width:1120px;margin:auto;padding:0 20px 40px;color:var(--muted);font-size:13px;line-height:1.6}
+    @media(max-width:800px){
+      .grid{grid-template-columns:1fr}
+      .card,.card:nth-child(4),.card:nth-child(5){grid-column:auto}
+      .top{flex-direction:column}
+      .lang-wrap{width:160px}
+    }
+    @media(max-width:560px){
+      h1{font-size:29px}
+      .row{grid-template-columns:1fr}
+    }
+  
+/* ===== Global role navigation ===== */
+.tl-role-nav{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap}
+.tl-role-label{font-size:10px;line-height:1;color:var(--muted,#647773);font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-left:6px}
+.tl-nav-link{display:inline-flex;align-items:center;min-height:32px;padding:7px 9px;border-radius:9px;color:var(--text,#17312e);text-decoration:none;font-size:13px;font-weight:700}
+.tl-nav-link:hover{background:var(--soft,#e9f4f1)}
+.tl-nav-link.active{background:var(--soft,#e9f4f1);color:var(--accent,#2f7d73)}
+.tl-divider{width:1px;height:22px;background:var(--line,#dce9e6);margin:0 4px}
+@media(max-width:900px){.tl-role-nav{justify-content:flex-end;gap:5px}.tl-role-label{width:100%;text-align:right;margin:3px 0 0}.tl-divider{display:none}}
+
+
+/* v1.5 navigation stability: CSS-only fix */
+.tl-header{position:sticky!important;top:0!important;z-index:2000!important;background:#fff!important}
+.tl-root-header{width:min(1160px,100%);margin:0 auto;min-height:68px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.root-actions,.navright{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:10px!important;flex-wrap:nowrap!important;position:relative!important;z-index:2100!important}
+.root-actions>* , .navright>*{position:relative!important;z-index:2101!important;pointer-events:auto!important}
+.tl-role-nav{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:7px!important;flex-wrap:nowrap!important;position:relative!important;z-index:2101!important}
+.tl-nav-link{position:relative!important;z-index:2102!important;pointer-events:auto!important;cursor:pointer!important}
+.tl-global-right{position:relative!important;z-index:2102!important;pointer-events:auto!important;display:flex!important;align-items:center!important;gap:10px!important;white-space:nowrap!important}
+.tl-global-link,.tl-global-lang{position:relative!important;z-index:2103!important;pointer-events:auto!important;cursor:pointer!important}
+@media(max-width:900px){
+  .tl-root-header{min-height:auto;padding-top:12px;padding-bottom:12px}
+  .root-actions,.navright,.tl-global-right{flex-wrap:wrap!important;white-space:normal!important}
+  .tl-role-nav{flex-wrap:wrap!important}
+}
+
+</style>
+</head>
+<body data-page="lab">
+<header>
+  <div class="top">
+    <div>
+      <div class="brand">TRANSVERSAL LAB</div>
+      <h1 id="title"></h1>
+      <div class="lead" id="lead"></div>
+    </div>
+    <div class="root-actions">
+      <div class="tl-role-nav-wrap"><div class="tl-role-nav" aria-label="Навигация Transversal Lab">
+      <span class="tl-role-label" data-global="studentRole">Студент</span>
+      <a class="tl-nav-link active" data-page="lab" data-global="labLink" href="index.html">Лаборатория</a>
+      <a class="tl-nav-link" data-page="profile" data-global="profileLinkNav" href="profile.html">Мой профиль</a>
+      <span class="tl-divider" aria-hidden="true"></span>
+      <span class="tl-role-label" data-global="teacherRole">Преподаватель</span>
+      <a class="tl-nav-link" data-page="teacher" data-global="teacherLinkNav" href="teacher.html">Кабинет</a>
+    </div></div>
+      <div class="lang-wrap">
+        <span class="lang-label" id="langLabel"></span>
+        <select id="lang" aria-label="Language">
+        <option value="ru">Русский</option>
+        <option value="uz-lat">O‘zbek</option>
+        <option value="uz-cyr">Ўзбекча</option>
+        <option value="en">English</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<div id="defenseDemo" style="margin:0 0 22px;padding:14px 16px;border:1px solid #cfe5e1;background:#eef7f4;border-radius:14px;color:#355b56;font-size:13px;line-height:1.5">
+      <strong>Демонстрационная версия для защиты:</strong>
+      сайт открыт для просмотра без регистрации.
+      <a href="profile.html" style="margin-left:8px;color:#2f7d73;font-weight:750">Мой профиль</a>
+      <a href="teacher.html" style="margin-left:8px;color:#2f7d73;font-weight:750">Кабинет</a>
+    </div>
+  <div class="notice">
+    <strong id="noticeTitle"></strong>
+    <span id="noticeText"></span>
+  </div>
+
+  <section class="grid" id="labs"></section>
+
+  <section class="profile">
+    <h2 id="profileTitle"></h2>
+    <p id="profileText" class="profile-intro"></p>
+    <div id="profileRows"></div>
+  </section>
+</main>
+
+<footer id="footer"></footer>
+
+<script>
+const T = {
+  ru:{
+    title:"Единая педагогическая лаборатория",
+    lead:"Цифровая среда для практической работы с трансверсальными компетенциями будущих учителей начальных классов.",
+    langLabel:"Язык", profileLink:"Мой профиль",
+    noticeTitle:"Как устроена лаборатория",
+    noticeText:"Каждый Lab является практическим модулем. Сейчас модули не присваивают итоговый научный балл: они фиксируют наблюдаемые действия студента, чтобы позднее объединить их в единую диагностическую систему.",
+    profileTitle:"Будущий профиль студента",
+    profileText:"На этом этапе профиль — только структура. После согласования общей диагностической матрицы здесь появится единое отображение динамики по четырём компонентам.",
+    footer:"Интеграционная оболочка v0.2. Существующие Lab-модули не изменены; этот слой объединяет их в одну систему и готовит общую диагностическую архитектуру.",
+    components:[
+      ["Когнитивный","анализ ситуации, аргументация и обоснование решения"],
+      ["Социально-коммуникативный","слушание, уточняющие вопросы, согласование позиций и совместное действие"],
+      ["Цифровая грамотность","поиск и проверка информации, выбор цифрового инструмента, критическая работа с AI"],
+      ["Рефлексивно-регулятивный","анализ результата, выявление причин, изменение стратегии и постановка следующей цели"]
+    ],
+    labs:[
+      ["Lab 1","Введение","Ознакомление с моделью трансверсальных компетенций и логикой лаборатории.","Ориентационный модуль.","Открыть Lab 1","labs/lab1/index.html"],
+      ["Lab 2","Когнитивный фокус","Анализ педагогической ситуации, принятие и обоснование решения.","Работа с анализом и обоснованием решения.","Открыть Lab 2","labs/lab2/index.html"],
+      ["Lab 3","Социально-коммуникативный фокус","Диалог, активное слушание, уточняющие вопросы и согласование позиций.","Работа с педагогическим взаимодействием.","Открыть Lab 3","labs/lab3/index.html"],
+      ["Lab 4","Цифровой фокус","Поиск и проверка информации, выбор цифрового инструмента и критическая работа с AI.","Работа с ответственной цифровой деятельностью.","Открыть Lab 4","labs/lab4/index.html"],
+      ["Lab 5","Рефлексивно-регулятивный фокус","Сравнение результата, выявление трудности, изменение стратегии и постановка следующей цели.","Работа с превращением рефлексии в следующее действие.","Открыть Lab 5","labs/lab5/index.html"]
+    ]
+  },
+  "uz-lat":{
+    title:"Yagona pedagogik laboratoriya",
+    lead:"Bo‘lajak boshlang‘ich sinf o‘qituvchilarining transversal kompetensiyalari bilan amaliy ishlash uchun raqamli muhit.",
+    langLabel:"Til", profileLink:"Mening profilim",
+    noticeTitle:"Laboratoriya qanday ishlaydi",
+    noticeText:"Har bir Lab amaliy modul hisoblanadi. Hozircha modullar yakuniy ilmiy ball bermaydi: ular talabaning kuzatiladigan harakatlarini qayd etadi va keyinchalik yagona diagnostika tizimiga birlashtiriladi.",
+    profileTitle:"Talabaning kelajakdagi profili",
+    profileText:"Hozir profil faqat tuzilma sifatida berilgan. Umumiy diagnostik matritsa kelishilgach, to‘rtta komponent bo‘yicha rivojlanish dinamikasi shu yerda ko‘rsatiladi.",
+    footer:"Integratsion qobiq v0.2. Mavjud Lab modullari o‘zgartirilmagan; ushbu qatlam ularni yagona tizimga birlashtiradi va umumiy diagnostika arxitekturasini tayyorlaydi.",
+    components:[
+      ["Kognitiv","vaziyatni tahlil qilish, dalillash va qarorni asoslash"],
+      ["Ijtimoiy-kommunikativ","tinglash, aniqlashtiruvchi savollar, pozitsiyalarni muvofiqlashtirish va hamkorlikdagi harakat"],
+      ["Raqamli savodxonlik","axborotni izlash va tekshirish, raqamli vositani tanlash, AI bilan tanqidiy ishlash"],
+      ["Refleksiv-regulyativ","natijani tahlil qilish, sababni aniqlash, strategiyani o‘zgartirish va keyingi maqsadni belgilash"]
+    ],
+    labs:[
+      ["Lab 1","Kirish","Transversal kompetensiyalar modeli va laboratoriya mantiqi bilan tanishish.","Kirish moduli.","Lab 1 ni ochish","labs/lab1/index.html"],
+      ["Lab 2","Kognitiv yo‘nalish","Pedagogik vaziyatni tahlil qilish, qaror qabul qilish va uni asoslash.","Tahlil va qarorni asoslash bilan ishlash.","Lab 2 ni ochish","labs/lab2/index.html"],
+      ["Lab 3","Ijtimoiy-kommunikativ yo‘nalish","Dialog, faol tinglash, aniqlashtiruvchi savollar va pozitsiyalarni muvofiqlashtirish.","Pedagogik hamkorlik bilan ishlash.","Lab 3 ni ochish","labs/lab3/index.html"],
+      ["Lab 4","Raqamli yo‘nalish","Axborotni izlash va tekshirish, raqamli vositani tanlash va AI bilan tanqidiy ishlash.","Mas’uliyatli raqamli faoliyat bilan ishlash.","Lab 4 ni ochish","labs/lab4/index.html"],
+      ["Lab 5","Refleksiv-regulyativ yo‘nalish","Natijani taqqoslash, qiyinchilikni aniqlash, strategiyani o‘zgartirish va keyingi maqsadni belgilash.","Refleksiyani keyingi harakatga aylantirish bilan ishlash.","Lab 5 ni ochish","labs/lab5/index.html"]
+    ]
+  },
+  "uz-cyr":{
+    title:"Ягона педагогик лаборатория",
+    lead:"Бўлажак бошланғич синф ўқитувчиларининг трансверсал компетенциялари билан амалий ишлаш учун рақамли муҳит.",
+    langLabel:"Тил", profileLink:"Менинг профилим",
+    noticeTitle:"Лаборатория қандай ишлайди",
+    noticeText:"Ҳар бир Lab амалий модул ҳисобланади. Ҳозирча модуллар якуний илмий балл бермайди: улар талабанинг кузатиладиган ҳаракатларини қайд этади ва кейинчалик ягона диагностика тизимига бирлаштирилади.",
+    profileTitle:"Талабанинг келажакдаги профили",
+    profileText:"Ҳозир профиль фақат тузилма сифатида берилган. Умумий диагностик матрица келишилгандан сўнг, тўртта компонент бўйича ривожланиш динамикаси шу ерда кўрсатилади.",
+    footer:"Интеграцион қобиқ v0.2. Мавжуд Lab модуллари ўзгартирилмаган; ушбу қатлам уларни ягона тизимга бирлаштиради ва умумий диагностика архитектурасини тайёрлайди.",
+    components:[
+      ["Когнитив","вазиятни таҳлил қилиш, далиллаш ва қарорни асослаш"],
+      ["Ижтимоий-коммуникатив","тинглаш, аниқлаштирувчи саволлар, позицияларни мувофиқлаштириш ва ҳамкорликдаги ҳаракат"],
+      ["Рақамли саводхонлик","ахборотни излаш ва текшириш, рақамли воситани танлаш, AI билан танқидий ишлаш"],
+      ["Рефлексив-регулятив","натижани таҳлил қилиш, сабабни аниқлаш, стратегияни ўзгартириш ва кейинги мақсадни белгилаш"]
+    ],
+    labs:[
+      ["Lab 1","Кириш","Трансверсал компетенциялар модели ва лаборатория мантиғи билан танишиш.","Кириш модули.","Lab 1 ни очиш","labs/lab1/index.html"],
+      ["Lab 2","Когнитив йўналиш","Педагогик вазиятни таҳлил қилиш, қарор қабул қилиш ва уни асослаш.","Таҳлил ва қарорни асослаш билан ишлаш.","Lab 2 ни очиш","labs/lab2/index.html"],
+      ["Lab 3","Ижтимоий-коммуникатив йўналиш","Диалог, фаол тинглаш, аниқлаштирувчи саволлар ва позицияларни мувофиқлаштириш.","Педагогик ҳамкорлик билан ишлаш.","Lab 3 ни очиш","labs/lab3/index.html"],
+      ["Lab 4","Рақамли йўналиш","Ахборотни излаш ва текшириш, рақамли воситани танлаш ва AI билан танқидий ишлаш.","Масъулиятли рақамли фаолият билан ишлаш.","Lab 4 ни очиш","labs/lab4/index.html"],
+      ["Lab 5","Рефлексив-регулятив йўналиш","Натижани таққослаш, қийинчиликни аниқлаш, стратегияни ўзгартириш ва кейинги мақсадни белгилаш.","Рефлексияни кейинги ҳаракатга айлантириш билан ишлаш.","Lab 5 ни очиш","labs/lab5/index.html"]
+    ]
+  },
+  en:{
+    title:"Unified Pedagogical Laboratory",
+    lead:"A digital environment for practical work with transversal competences of future primary school teachers.",
+    langLabel:"Language", profileLink:"My profile",
+    noticeTitle:"How the laboratory works",
+    noticeText:"Each Lab is a practical module. At this stage, the modules do not assign a final scientific score: they capture observable student actions that will later be integrated into one diagnostic system.",
+    profileTitle:"Future student profile",
+    profileText:"At this stage the profile is only a structure. After the common diagnostic matrix is agreed, this area will show development dynamics across the four components.",
+    footer:"Integration shell v0.2. Existing Lab modules are unchanged; this layer combines them into one system and prepares the common diagnostic architecture.",
+    components:[
+      ["Cognitive","situation analysis, reasoning and justification of decisions"],
+      ["Socio-communicative","listening, clarifying questions, position alignment and collaborative action"],
+      ["Digital literacy","information search and verification, digital tool selection, critical work with AI"],
+      ["Reflexive-regulatory","result analysis, identifying causes, changing strategy and setting the next goal"]
+    ],
+    labs:[
+      ["Lab 1","Introduction","Orientation in the transversal competence model and the logic of the laboratory.","Orientation module.","Open Lab 1","labs/lab1/index.html"],
+      ["Lab 2","Cognitive focus","Pedagogical situation analysis, decision-making and justification.","Work with analysis and decision justification.","Open Lab 2","labs/lab2/index.html"],
+      ["Lab 3","Socio-communicative focus","Dialogue, active listening, clarifying questions and position alignment.","Work with pedagogical interaction.","Open Lab 3","labs/lab3/index.html"],
+      ["Lab 4","Digital focus","Information search and verification, digital tool selection and critical work with AI.","Work with responsible digital activity.","Open Lab 4","labs/lab4/index.html"],
+      ["Lab 5","Reflexive-regulatory focus","Comparing results, identifying difficulties, changing strategy and setting the next goal.","Work with turning reflection into the next action.","Open Lab 5","labs/lab5/index.html"]
+    ]
+  }
+};
+
+function render(lang){
+  const t=T[lang] || T.ru;
+  document.documentElement.lang = lang==="uz-cyr" || lang==="uz-lat" ? "uz" : lang;
+  document.getElementById("title").textContent=t.title;
+  document.getElementById("lead").textContent=t.lead;
+  document.getElementById("langLabel").textContent=t.langLabel;
+
+  document.getElementById("noticeTitle").textContent=t.noticeTitle;
+  document.getElementById("noticeText").textContent=t.noticeText;
+  document.getElementById("profileTitle").textContent=t.profileTitle;
+  document.getElementById("profileText").textContent=t.profileText;
+  document.getElementById("footer").textContent=t.footer;
+
+  document.getElementById("labs").innerHTML = t.labs.map(x => `
+    <article class="card">
+      <div class="num">${x[0]}</div>
+      <h2>${x[1]}</h2>
+      <div class="tag">${x[2]}</div>
+      <p>${x[3]}</p>
+      <a class="go" href="${x[5]}">${x[4]}</a>
+    </article>
+  `).join("");
+
+  document.getElementById("profileRows").innerHTML = t.components.map(x => `
+    <div class="row">
+      <strong>${x[0]}</strong>
+      <span>${x[1]}</span>
+    </div>
+  `).join("");
+
+  localStorage.setItem("tl_lang", lang);
+}
+
+const saved = localStorage.getItem("tl_lang") || "ru";
+document.getElementById("lang").value=saved;
+render(saved);
+document.getElementById("lang").addEventListener("change",e=>render(e.target.value));
+</script>
+
+<script>
+(function(){
+  const NAV_TEXT={
+    ru:{studentRole:"Студент",labLink:"Лаборатория",profileLinkNav:"Мой профиль",teacherRole:"Преподаватель",teacherLinkNav:"Кабинет"},
+    "uz-lat":{studentRole:"Talaba",labLink:"Laboratoriya",profileLinkNav:"Mening profilim",teacherRole:"O‘qituvchi",teacherLinkNav:"Kabinet"},
+    "uz-cyr":{studentRole:"Талаба",labLink:"Лаборатория",profileLinkNav:"Менинг профилим",teacherRole:"Ўқитувчи",teacherLinkNav:"Кабинет"},
+    en:{studentRole:"Student",labLink:"Laboratory",profileLinkNav:"My profile",teacherRole:"Teacher",teacherLinkNav:"Dashboard"}
+  };
+  function current(){const l=localStorage.getItem("tl_lang")||"ru";return NAV_TEXT[l]?l:"ru"}
+  function paint(){
+    const x=NAV_TEXT[current()];
+    document.querySelectorAll("[data-global]").forEach(el=>{
+      const key=el.getAttribute("data-global"); if(x[key]) el.textContent=x[key];
+    });
+    document.querySelectorAll("[data-page]").forEach(el=>{
+      el.classList.toggle("active",el.getAttribute("data-page")===(document.body.getAttribute("data-page")||"lab"));
+    });
+  }
+  document.addEventListener("DOMContentLoaded",()=>{
+    const sel=document.getElementById("lang")||document.getElementById("languageSelect");
+    if(sel){
+      const shared=localStorage.getItem("tl_lang");
+      if(shared && [...sel.options].some(o=>o.value===shared)) sel.value=shared;
+      sel.addEventListener("change",()=>{localStorage.setItem("tl_lang",sel.value);paint()});
+    }
+    paint();
+  });
+  window.addEventListener("storage",paint);
+})();
+</script>
+</body>
+</html>

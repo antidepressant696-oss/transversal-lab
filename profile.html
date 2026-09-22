@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Transversal Lab — Мой профиль</title>
+<style>
+:root{--bg:#f6faf9;--panel:#fff;--text:#17312e;--muted:#647773;--line:#dce9e6;--accent:#2f7d73;--soft:#e9f4f1;--warn:#fbf6e9}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{background:#fff;border-bottom:1px solid var(--line);padding:15px 20px}
+.nav{max-width:1120px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:18px}
+.brand{font-weight:800;color:var(--accent);text-decoration:none;letter-spacing:.04em}
+.navright{display:flex;align-items:center;gap:12px}.nav a{color:var(--text);text-decoration:none;font-size:14px}
+select{border:1px solid var(--line);border-radius:10px;padding:8px 11px;background:#fff;color:var(--text)}
+main{max-width:1120px;margin:auto;padding:36px 20px 50px}
+.eyebrow{font-size:12px;letter-spacing:.08em;font-weight:800;color:var(--accent)}
+h1{font-size:34px;line-height:1.15;margin:10px 0 8px}.lead{max-width:820px;color:var(--muted);line-height:1.6}
+.notice{margin:22px 0 28px;padding:17px 19px;border:1px solid #cfe5e1;background:var(--soft);border-radius:16px;line-height:1.55}
+.overview{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px}.kpi strong{display:block;font-size:24px;margin-top:4px}.kpi span{color:var(--muted);font-size:12px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:19px}
+.card h2{margin:0 0 4px;font-size:21px}.sub{color:var(--muted);font-size:13px;line-height:1.45}
+.status{display:inline-block;padding:6px 9px;border-radius:999px;background:#f0f6f5;color:#355b56;font-size:12px;font-weight:750;margin:9px 0 12px}
+.status.done{background:#e8f4ef;color:#276453}.status.todo{background:#f1f4f3;color:#75827e}
+.meter{height:7px;background:#edf2f1;border-radius:999px;overflow:hidden}.meter i{display:block;height:100%;background:#77b8aa;width:0}
+.evidence{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}.tag{padding:6px 8px;border-radius:999px;font-size:11px;font-weight:700;background:var(--soft);color:#276453}.tag.candidate{background:var(--warn);color:#7b652e}
+.details{margin-top:14px}.details summary{cursor:pointer;color:#2d6a5a;font-weight:700;font-size:13px}
+ul{padding-left:20px;margin:10px 0 0;color:var(--muted);line-height:1.55}
+.empty{color:var(--muted);font-size:13px;margin-top:9px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}.btn{display:inline-block;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:750;border:1px solid var(--line);color:var(--text);background:#fff}.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+footer{max-width:1120px;margin:auto;padding:0 20px 40px;color:var(--muted);font-size:13px;line-height:1.6}
+@media(max-width:900px){.overview{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:680px){.grid{grid-template-columns:1fr}.overview{grid-template-columns:1fr 1fr}.nav{align-items:flex-start}.navright{flex-wrap:wrap;justify-content:flex-end}}
+
+/* ===== Global role navigation ===== */
+.tl-role-nav{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap}
+.tl-role-label{font-size:10px;line-height:1;color:var(--muted,#647773);font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-left:6px}
+.tl-nav-link{display:inline-flex;align-items:center;min-height:32px;padding:7px 9px;border-radius:9px;color:var(--text,#17312e);text-decoration:none;font-size:13px;font-weight:700}
+.tl-nav-link:hover{background:var(--soft,#e9f4f1)}
+.tl-nav-link.active{background:var(--soft,#e9f4f1);color:var(--accent,#2f7d73)}
+.tl-divider{width:1px;height:22px;background:var(--line,#dce9e6);margin:0 4px}
+@media(max-width:900px){.tl-role-nav{justify-content:flex-end;gap:5px}.tl-role-label{width:100%;text-align:right;margin:3px 0 0}.tl-divider{display:none}}
+
+
+/* v1.5 navigation stability: CSS-only fix */
+.tl-header{position:sticky!important;top:0!important;z-index:2000!important;background:#fff!important}
+.tl-root-header{width:min(1160px,100%);margin:0 auto;min-height:68px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.root-actions,.navright{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:10px!important;flex-wrap:nowrap!important;position:relative!important;z-index:2100!important}
+.root-actions>* , .navright>*{position:relative!important;z-index:2101!important;pointer-events:auto!important}
+.tl-role-nav{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:7px!important;flex-wrap:nowrap!important;position:relative!important;z-index:2101!important}
+.tl-nav-link{position:relative!important;z-index:2102!important;pointer-events:auto!important;cursor:pointer!important}
+.tl-global-right{position:relative!important;z-index:2102!important;pointer-events:auto!important;display:flex!important;align-items:center!important;gap:10px!important;white-space:nowrap!important}
+.tl-global-link,.tl-global-lang{position:relative!important;z-index:2103!important;pointer-events:auto!important;cursor:pointer!important}
+@media(max-width:900px){
+  .tl-root-header{min-height:auto;padding-top:12px;padding-bottom:12px}
+  .root-actions,.navright,.tl-global-right{flex-wrap:wrap!important;white-space:normal!important}
+  .tl-role-nav{flex-wrap:wrap!important}
+}
+
+</style>
+</head>
+<body data-page="profile">
+<header>
+  <div class="nav">
+    <a class="brand" href="index.html">TRANSVERSAL LAB</a>
+    <div class="navright">
+      <div class="tl-role-nav" aria-label="Навигация Transversal Lab">
+        <span class="tl-role-label" data-global="studentRole">Студент</span>
+        <a class="tl-nav-link" data-page="lab" data-global="labLink" href="index.html">Лаборатория</a>
+        <a class="tl-nav-link active" data-page="profile" data-global="profileLinkNav" href="profile.html">Мой профиль</a>
+        <span class="tl-divider" aria-hidden="true"></span>
+        <span class="tl-role-label" data-global="teacherRole">Преподаватель</span>
+        <a class="tl-nav-link" data-page="teacher" data-global="teacherLinkNav" href="teacher.html">Кабинет</a>
+      </div>
+      <select id="lang" aria-label="Language">
+        <option value="ru">Русский</option>
+        <option value="uz-lat">O‘zbek</option>
+        <option value="uz-cyr">Ўзбекча</option>
+        <option value="en">English</option>
+      </select>
+    </div>
+  </div>
+</header>
+<main>
+  <div class="eyebrow" id="eyebrow"></div>
+  <h1 id="title"></h1>
+  <p class="lead" id="lead"></p>
+  <div class="notice"><strong id="noticeTitle"></strong><span id="noticeText"></span></div><div id="demoBadge" style="display:inline-block;margin-top:-14px;margin-bottom:20px;padding:7px 10px;border-radius:999px;background:#e8f4ef;color:#276453;font-size:12px;font-weight:750">Демонстрационный профиль для защиты</div>
+
+  <section class="overview">
+    <div class="kpi"><span id="completedLabel"></span><strong id="completed"></strong></div>
+    <div class="kpi"><span id="evidenceLabel"></span><strong id="evidenceCount"></strong></div>
+    <div class="kpi"><span id="candidateLabel"></span><strong id="candidateCount"></strong></div>
+    <div class="kpi"><span id="scoreLabel"></span><strong>—</strong></div>
+  </section>
+
+  <section class="grid" id="cards"></section>
+
+  <div class="actions"><a class="btn primary" href="index.html" id="backHome"></a></div>
+</main>
+<footer id="footer"></footer>
+
+<script>
+const I18N={
+ru:{
+eyebrow:"МОЙ ПРОФИЛЬ",title:"Профиль прохождения Transversal Lab",lead:"Здесь собраны результаты тех модулей, которые вы уже прошли. На этом этапе система показывает наблюдаемые свидетельства, а не научный итоговый балл.",
+noticeTitle:"Важно",noticeText:"Профиль пока является диагностическим рабочим инструментом. Наличие свидетельства не означает автоматически, что компетенция полностью сформирована; содержательные выводы по индикаторам требуют экспертной интерпретации.",
+completedLabel:"Завершено модулей",evidenceLabel:"Зафиксировано свидетельств",candidateLabel:"Требует экспертной проверки",scoreLabel:"Итоговый научный балл",backHome:"Вернуться к лаборатории",homeLink:"Главная",footer:"Следующий этап проекта — согласование единой шкалы и правил интерпретации после накопления данных по всем модулям.",
+components:{cognitive:"Когнитивный",social:"Социально-коммуникативный",digital:"Цифровая грамотность",reflective:"Рефлексивно-регулятивный"},
+module:{done:"Пройден",todo:"Пока не пройден",open:"Открыть модуль",evidence:"свидетельств",candidate:"кандидатов на проверку"},
+labs:{
+1:["Lab 1","Введение","Ориентация в модели трансверсальных компетенций.","labs/lab1/index.html"],
+2:["Lab 2","Когнитивный фокус","Анализ педагогической ситуации и обоснование решения.","labs/lab2/index.html"],
+3:["Lab 3","Социально-коммуникативный фокус","Слушание, уточняющие вопросы и согласование позиций.","labs/lab3/index.html"],
+4:["Lab 4","Цифровой фокус","Поиск, проверка информации, выбор инструмента и критическая работа с AI.","labs/lab4/index.html"],
+5:["Lab 5","Рефлексивно-регулятивный фокус","Анализ результата и изменение следующего действия.","labs/lab5/index.html"]},
+details:"Показать зафиксированные компоненты"
+},
+"uz-lat":{
+eyebrow:"MENING PROFILIM",title:"Transversal Lab o‘tish profili",lead:"Bu yerda siz yakunlagan modullar natijalari jamlanadi. Hozircha tizim ilmiy yakuniy ball emas, kuzatiladigan dalillarni ko‘rsatadi.",
+noticeTitle:"Muhim",noticeText:"Profil hozircha diagnostik ishchi vosita. Dalilning mavjudligi kompetensiya to‘liq shakllanganini avtomatik anglatmaydi; mazmuniy xulosa indikatorlar bo‘yicha ekspert talqinini talab qiladi.",
+completedLabel:"Yakunlangan modullar",evidenceLabel:"Qayd etilgan dalillar",candidateLabel:"Ekspert tekshiruviga nomzodlar",scoreLabel:"Yakuniy ilmiy ball",backHome:"Laboratoriyaga qaytish",homeLink:"Bosh sahifa",footer:"Keyingi bosqich — barcha modullar ma’lumotlari yig‘ilgach, yagona shkala va talqin qoidalarini kelishish.",
+components:{cognitive:"Kognitiv",social:"Ijtimoiy-kommunikativ",digital:"Raqamli savodxonlik",reflective:"Refleksiv-regulyativ"},
+module:{done:"Yakunlangan",todo:"Hali yakunlanmagan",open:"Modulni ochish",evidence:"dalil",candidate:"tekshiruv nomzodi"},
+labs:{
+1:["Lab 1","Kirish","Transversal kompetensiyalar modeli bilan tanishish.","labs/lab1/index.html"],
+2:["Lab 2","Kognitiv yo‘nalish","Pedagogik vaziyatni tahlil qilish va qarorni asoslash.","labs/lab2/index.html"],
+3:["Lab 3","Ijtimoiy-kommunikativ yo‘nalish","Tinglash, aniqlashtiruvchi savollar va pozitsiyalarni muvofiqlashtirish.","labs/lab3/index.html"],
+4:["Lab 4","Raqamli yo‘nalish","Axborotni izlash, tekshirish, vositani tanlash va AI bilan tanqidiy ishlash.","labs/lab4/index.html"],
+5:["Lab 5","Refleksiv-regulyativ yo‘nalish","Natijani tahlil qilish va keyingi harakatni o‘zgartirish.","labs/lab5/index.html"]},
+details:"Qayd etilgan komponentlarni ko‘rsatish"
+},
+"uz-cyr":{
+eyebrow:"МЕНИНГ ПРОФИЛИМ",title:"Transversal Lab ўтиш профили",lead:"Бу ерда сиз якунлаган модуллар натижалари жамланади. Ҳозирча тизим илмий якуний балл эмас, кузатиладиган далилларни кўрсатади.",
+noticeTitle:"Муҳим",noticeText:"Профил ҳозирча диагностик ишчи восита. Далилнинг мавжудлиги компетенция тўлиқ шаклланганини автоматик англатмайди; мазмуний хулоса индикаторлар бўйича эксперт талқинини талаб қилади.",
+completedLabel:"Якунланган модуллар",evidenceLabel:"Қайд этилган далиллар",candidateLabel:"Эксперт текширувига номзодлар",scoreLabel:"Якуний илмий балл",backHome:"Лабораторияга қайтиш",homeLink:"Бош саҳифа",footer:"Кейинги босқич — барча модуллар маълумотлари йиғилгандан сўнг, ягона шкала ва талқин қоидаларини келишиш.",
+components:{cognitive:"Когнитив",social:"Ижтимоий-коммуникатив",digital:"Рақамли саводхонлик",reflective:"Рефлексив-регулятив"},
+module:{done:"Якунланган",todo:"Ҳали якунланмаган",open:"Модулни очиш",evidence:"далил",candidate:"текширув номзоди"},
+labs:{
+1:["Lab 1","Кириш","Трансверсал компетенциялар модели билан танишиш.","labs/lab1/index.html"],
+2:["Lab 2","Когнитив йўналиш","Педагогик вазиятни таҳлил қилиш ва қарорни асослаш.","labs/lab2/index.html"],
+3:["Lab 3","Ижтимоий-коммуникатив йўналиш","Тинглаш, аниқлаштирувчи саволлар ва позицияларни мувофиқлаштириш.","labs/lab3/index.html"],
+4:["Lab 4","Рақамли йўналиш","Ахборотни излаш, текшириш, воситани танлаш ва AI билан танқидий ишлаш.","labs/lab4/index.html"],
+5:["Lab 5","Рефлексив-регулятив йўналиш","Натижани таҳлил қилиш ва кейинги ҳаракатни ўзгартириш.","labs/lab5/index.html"]},
+details:"Қайд этилган компонентларни кўрсатиш"
+},
+en:{
+eyebrow:"MY PROFILE",title:"Transversal Lab progress profile",lead:"This page brings together the modules you have completed. At this stage the system shows observable evidence rather than a final scientific score.",
+noticeTitle:"Important",noticeText:"The profile is currently a working diagnostic tool. Evidence does not automatically mean that a competence is fully formed; substantive conclusions require expert interpretation of the indicators.",
+completedLabel:"Modules completed",evidenceLabel:"Evidence captured",candidateLabel:"Requiring expert review",scoreLabel:"Final scientific score",backHome:"Back to laboratory",homeLink:"Home",footer:"Next stage: after data from all modules are accumulated, the common scale and interpretation rules will be agreed.",
+components:{cognitive:"Cognitive",social:"Socio-communicative",digital:"Digital literacy",reflective:"Reflexive-regulatory"},
+module:{done:"Completed",todo:"Not completed yet",open:"Open module",evidence:"evidence",candidate:"review candidates"},
+labs:{
+1:["Lab 1","Introduction","Orientation in the transversal competence model.","labs/lab1/index.html"],
+2:["Lab 2","Cognitive focus","Pedagogical situation analysis and decision justification.","labs/lab2/index.html"],
+3:["Lab 3","Socio-communicative focus","Listening, clarifying questions and position alignment.","labs/lab3/index.html"],
+4:["Lab 4","Digital focus","Information search, verification, tool selection and critical work with AI.","labs/lab4/index.html"],
+5:["Lab 5","Reflexive-regulatory focus","Result analysis and changing the next action.","labs/lab5/index.html"]},
+details:"Show captured components"
+}
+};
+
+const mappings={
+  lab2:{
+    K1:["captured","Выделение значимой информации"],
+    K6:["captured","Обоснование решения"],
+    DL3:["captured","Выбор цифрового инструмента"],
+    RR6:["candidate","Альтернативная стратегия"],
+    RR7:["candidate","Следующая профессиональная цель"]
+  },
+  lab3:{
+    SC2:["candidate","Активное слушание"],
+    SC3:["candidate","Уточняющий вопрос"],
+    SC4:["candidate","Адаптация сообщения"],
+    SC6:["candidate","Согласование позиций"],
+    K2:["candidate","Профессиональная интерпретация"],
+    K6:["candidate","Обоснование коммуникационного выбора"],
+    RR6:["candidate","Изменение следующего действия"]
+  },
+  lab4:{
+    DL1:["candidate","Поиск цифровой информации"],
+    DL2:["candidate","Проверка источника"],
+    DL3:["candidate","Выбор цифрового инструмента"],
+    DL5:["candidate","Безопасность и этика"],
+    DL6:["candidate","Критическая работа с AI"],
+    DL7:["candidate","Педагогическая оценка цифрового результата"]
+  },
+  lab5:{
+    RR2:["candidate","Сравнение ожидаемого и фактического результата"],
+    RR3:["candidate","Анализ причин"],
+    RR5:["candidate","Использование обратной связи"],
+    RR6:["candidate","Альтернативная стратегия"],
+    RR7:["candidate","Следующая профессиональная цель"]
+  }
+};
+
+const compOf={K1:"cognitive",K2:"cognitive",K3:"cognitive",K4:"cognitive",K5:"cognitive",K6:"cognitive",
+SC1:"social",SC2:"social",SC3:"social",SC4:"social",SC5:"social",SC6:"social",SC7:"social",
+DL1:"digital",DL2:"digital",DL3:"digital",DL4:"digital",DL5:"digital",DL6:"digital",DL7:"digital",
+RR1:"reflective",RR2:"reflective",RR3:"reflective",RR4:"reflective",RR5:"reflective",RR6:"reflective",RR7:"reflective",RR8:"reflective"};
+
+function getLang(){let l=localStorage.getItem("tl_lang")||"ru";return I18N[l]?l:"ru"}
+function labDone(n){return !!localStorage.getItem(`tl-lab${n}-case01`)}
+
+function evidenceForLab2(){
+  const r=JSON.parse(localStorage.getItem("tl-lab2-case01")||"null"); if(!r)return [];
+  return Object.entries(r.evidence||{}).filter(([,v])=>v?.status==="captured"||v?.status==="candidate").map(([id,v])=>({id,status:v.status,label:id}));
+}
+function evidenceForLab34(n){
+  const r=JSON.parse(localStorage.getItem(`tl-lab${n}-case01`)||"null"); if(!r)return [];
+  // Existing lab records contain the selected options and reasons.
+  const out=[];
+  if(n===3){
+    const A=r.A,B=r.B,C=r.C;
+    if(A===2) out.push({id:"SC2",status:"candidate"},{id:"K2",status:"candidate"});
+    if(B===2) out.push({id:"SC3",status:"candidate"},{id:"SC4",status:"candidate"});
+    if(C===2) out.push({id:"SC6",status:"candidate"},{id:"RR6",status:"candidate"});
+    if((r.aReason||"").length>=20) out.push({id:"SC?R",status:"candidate"});
+  }
+  if(n===4){
+    const p=r.picks||{};
+    if(p[1]===2) out.push({id:"DL1",status:"candidate"});
+    if(p[2]===2) out.push({id:"DL2",status:"candidate"});
+    if(p[3]===2) out.push({id:"DL3",status:"candidate"});
+    if(p[4]===2) out.push({id:"DL6",status:"candidate"},{id:"DL5",status:"candidate"});
+    if((r.reasons||[]).some(x=>(x||"").length>=20)) out.push({id:"DL7",status:"candidate"});
+  }
+  return out.filter(x=>!x.id.includes("?"));
+}
+function evidenceForLab5(){
+  const r=JSON.parse(localStorage.getItem("tl-lab5-case01")||"null"); if(!r)return [];
+  const p=r.picks||{}; const out=[];
+  if(p[1]===2)out.push({id:"RR2",status:"candidate"});
+  if(p[2]===2)out.push({id:"RR3",status:"candidate"});
+  if(p[3]===2)out.push({id:"RR5",status:"candidate"});
+  if(p[4]===2)out.push({id:"RR6",status:"candidate"});
+  if(p[5]===2)out.push({id:"RR7",status:"candidate"});
+  return out;
+}
+function buildEvidence(){
+  const out=[...evidenceForLab2(),...evidenceForLab34(3),...evidenceForLab34(4),...evidenceForLab5()];
+  const seen=new Map();
+  out.forEach(e=>seen.set(e.id,e.status==="captured"?"captured":(seen.get(e.id)||"candidate")));
+  return [...seen.entries()].map(([id,status])=>({id,status}));
+}
+function esc(s){return String(s).replace(/[&<>'"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]))}
+function render(){
+  const lang=getLang(), x=I18N[lang];
+  document.documentElement.lang=lang==="ru"?"ru":lang==="en"?"en":"uz";
+  ["eyebrow","title","lead","noticeTitle","noticeText","completedLabel","evidenceLabel","candidateLabel","scoreLabel","backHome","homeLink","footer"].forEach(id=>document.getElementById(id).textContent=x[id]);
+  document.getElementById("lang").value=lang;
+  const completed=[1,2,3,4,5].filter(labDone).length, evidence=buildEvidence();
+  document.getElementById("completed").textContent=completed+" / 5";
+  document.getElementById("evidenceCount").textContent=evidence.filter(e=>e.status==="captured").length;
+  document.getElementById("candidateCount").textContent=evidence.filter(e=>e.status==="candidate").length;
+
+  const byComp={cognitive:[],social:[],digital:[],reflective:[]};
+  evidence.forEach(e=>{if(compOf[e.id])byComp[compOf[e.id]].push(e)});
+  const cards=document.getElementById("cards");
+  cards.innerHTML=[1,2,3,4,5].map(n=>{
+    const l=x.labs[n], done=labDone(n), ev=n===2?evidenceForLab2():n===3?evidenceForLab34(3):n===4?evidenceForLab34(4):n===5?evidenceForLab5():[];
+    const cap=ev.filter(e=>e.status==="captured"), cand=ev.filter(e=>e.status==="candidate");
+    const percent=done?100:0;
+    return `<article class="card"><h2>${esc(l[0])} · ${esc(l[1])}</h2><div class="sub">${esc(l[2])}</div>
+      <span class="status ${done?'done':'todo'}">${done?x.module.done:x.module.todo}</span>
+      <div class="meter"><i style="width:${percent}%"></i></div>
+      ${done?`<div class="evidence"><span class="tag">${cap.length} ${x.module.evidence}</span><span class="tag candidate">${cand.length} ${x.module.candidate}</span></div>`:`<div class="empty">${x.module.open}</div>`}
+      ${done&&ev.length?`<details class="details"><summary>${x.details}</summary><ul>${ev.map(e=>`<li><strong>${esc(e.id)}</strong> — ${esc(e.status==="captured"?x.module.done:x.module.candidate)}</li>`).join("")}</ul></details>`:""}
+      <div class="actions"><a class="btn" href="${l[3]}">${x.module.open}</a></div></article>`;
+  }).join("");
+}
+document.getElementById("lang").addEventListener("change",e=>{localStorage.setItem("tl_lang",e.target.value);render()});
+document.getElementById("lang").value=getLang();
+render();
+</script>
+
+<script>
+(function(){
+  const NAV_TEXT={
+    ru:{studentRole:"Студент",labLink:"Лаборатория",profileLinkNav:"Мой профиль",teacherRole:"Преподаватель",teacherLinkNav:"Кабинет"},
+    "uz-lat":{studentRole:"Talaba",labLink:"Laboratoriya",profileLinkNav:"Mening profilim",teacherRole:"O‘qituvchi",teacherLinkNav:"Kabinet"},
+    "uz-cyr":{studentRole:"Талаба",labLink:"Лаборатория",profileLinkNav:"Менинг профилим",teacherRole:"Ўқитувчи",teacherLinkNav:"Кабинет"},
+    en:{studentRole:"Student",labLink:"Laboratory",profileLinkNav:"My profile",teacherRole:"Teacher",teacherLinkNav:"Dashboard"}
+  };
+  function current(){const l=localStorage.getItem("tl_lang")||"ru";return NAV_TEXT[l]?l:"ru"}
+  function paint(){
+    const x=NAV_TEXT[current()];
+    document.querySelectorAll("[data-global]").forEach(el=>{
+      const key=el.getAttribute("data-global"); if(x[key]) el.textContent=x[key];
+    });
+    document.querySelectorAll("[data-page]").forEach(el=>{
+      el.classList.toggle("active",el.getAttribute("data-page")===(document.body.getAttribute("data-page")||"lab"));
+    });
+  }
+  document.addEventListener("DOMContentLoaded",()=>{
+    const sel=document.getElementById("lang")||document.getElementById("languageSelect");
+    if(sel){
+      const shared=localStorage.getItem("tl_lang");
+      if(shared && [...sel.options].some(o=>o.value===shared)) sel.value=shared;
+      sel.addEventListener("change",()=>{localStorage.setItem("tl_lang",sel.value);paint()});
+    }
+    paint();
+  });
+  window.addEventListener("storage",paint);
+})();
+</script>
+<script src="demo.js"></script>
+</body>
+</html>

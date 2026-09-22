@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Transversal Lab — Teacher Dashboard</title>
+<style>
+:root{--bg:#f6faf9;--panel:#fff;--text:#17312e;--muted:#647773;--line:#dce9e6;--accent:#2f7d73;--soft:#e9f4f1;--warn:#fbf6e9}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{background:#fff;border-bottom:1px solid var(--line);padding:14px 20px}.nav{max-width:1160px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:15px}.brand{font-weight:800;color:var(--accent);text-decoration:none;letter-spacing:.05em}.navright{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.navright a{color:var(--text);text-decoration:none;font-size:14px}
+select,input{border:1px solid var(--line);border-radius:10px;padding:8px 10px;background:#fff;color:var(--text)}
+main{max-width:1160px;margin:auto;padding:36px 20px 48px}.eyebrow{font-size:12px;font-weight:800;letter-spacing:.08em;color:var(--accent)}
+h1{margin:9px 0 8px;font-size:34px;line-height:1.15}.lead{color:var(--muted);max-width:820px;line-height:1.6}
+.notice{margin:20px 0 26px;padding:17px 19px;background:var(--soft);border:1px solid #cfe5e1;border-radius:16px;line-height:1.55}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px}.btn{border:1px solid var(--line);background:#fff;color:var(--text);border-radius:10px;padding:10px 13px;font-weight:750;cursor:pointer}.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}.file-btn{display:inline-flex;align-items:center;gap:8px}.file-btn input{display:none}
+.overview{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}.kpi{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px}.kpi span{display:block;color:var(--muted);font-size:12px}.kpi strong{display:block;font-size:24px;margin-top:5px}
+.table-wrap{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:auto}.table{width:100%;border-collapse:collapse;min-width:850px}.table th,.table td{padding:13px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}.table th{font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);background:#fbfdfc}.table tr:last-child td{border-bottom:0}.student-name{font-weight:800}.muted{color:var(--muted);font-size:13px;line-height:1.45}
+.pill{display:inline-block;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:750;margin:2px 4px 2px 0}.pill.done{background:#e8f4ef;color:#276453}.pill.todo{background:#f1f4f3;color:#75827e}.pill.candidate{background:var(--warn);color:#7b652e}
+.profile-panel{margin-top:18px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;display:none}.profile-head{display:flex;justify-content:space-between;gap:15px;align-items:flex-start}.profile-head h2{margin:0 0 5px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:16px}.comp{border:1px solid var(--line);border-radius:14px;padding:14px}.comp h3{margin:0 0 4px;font-size:16px}.tagbox{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}.evidence{padding:6px 8px;border-radius:999px;background:var(--soft);color:#276453;font-size:11px;font-weight:700}.candidate{background:var(--warn);color:#7b652e}.empty{color:var(--muted);font-size:13px}
+.small{font-size:12px;color:var(--muted)}footer{max-width:1160px;margin:auto;padding:0 20px 36px;color:var(--muted);font-size:13px;line-height:1.6}
+@media(max-width:900px){.overview{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}}
+@media(max-width:560px){.overview{grid-template-columns:1fr 1fr}.profile-head{flex-direction:column}}
+
+/* ===== Global role navigation ===== */
+.tl-role-nav{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap}
+.tl-role-label{font-size:10px;line-height:1;color:var(--muted,#647773);font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-left:6px}
+.tl-nav-link{display:inline-flex;align-items:center;min-height:32px;padding:7px 9px;border-radius:9px;color:var(--text,#17312e);text-decoration:none;font-size:13px;font-weight:700}
+.tl-nav-link:hover{background:var(--soft,#e9f4f1)}
+.tl-nav-link.active{background:var(--soft,#e9f4f1);color:var(--accent,#2f7d73)}
+.tl-divider{width:1px;height:22px;background:var(--line,#dce9e6);margin:0 4px}
+@media(max-width:900px){.tl-role-nav{justify-content:flex-end;gap:5px}.tl-role-label{width:100%;text-align:right;margin:3px 0 0}.tl-divider{display:none}}
+
+
+/* v1.5 navigation stability: CSS-only fix */
+.tl-header{position:sticky!important;top:0!important;z-index:2000!important;background:#fff!important}
+.tl-root-header{width:min(1160px,100%);margin:0 auto;min-height:68px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.root-actions,.navright{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:10px!important;flex-wrap:nowrap!important;position:relative!important;z-index:2100!important}
+.root-actions>* , .navright>*{position:relative!important;z-index:2101!important;pointer-events:auto!important}
+.tl-role-nav{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:7px!important;flex-wrap:nowrap!important;position:relative!important;z-index:2101!important}
+.tl-nav-link{position:relative!important;z-index:2102!important;pointer-events:auto!important;cursor:pointer!important}
+.tl-global-right{position:relative!important;z-index:2102!important;pointer-events:auto!important;display:flex!important;align-items:center!important;gap:10px!important;white-space:nowrap!important}
+.tl-global-link,.tl-global-lang{position:relative!important;z-index:2103!important;pointer-events:auto!important;cursor:pointer!important}
+@media(max-width:900px){
+  .tl-root-header{min-height:auto;padding-top:12px;padding-bottom:12px}
+  .root-actions,.navright,.tl-global-right{flex-wrap:wrap!important;white-space:normal!important}
+  .tl-role-nav{flex-wrap:wrap!important}
+}
+
+</style>
+</head>
+<body data-page="teacher">
+<header>
+  <div class="nav">
+    <a class="brand" href="index.html">TRANSVERSAL LAB</a>
+    <div class="navright">
+      <div class="tl-role-nav" aria-label="Навигация Transversal Lab">
+        <span class="tl-role-label" data-global="studentRole">Студент</span>
+        <a class="tl-nav-link" data-page="lab" data-global="labLink" href="index.html">Лаборатория</a>
+        <a class="tl-nav-link" data-page="profile" data-global="profileLinkNav" href="profile.html">Мой профиль</a>
+        <span class="tl-divider" aria-hidden="true"></span>
+        <span class="tl-role-label" data-global="teacherRole">Преподаватель</span>
+        <a class="tl-nav-link active" data-page="teacher" data-global="teacherLinkNav" href="teacher.html">Кабинет</a>
+      </div>
+      <select id="lang" aria-label="Language">
+        <option value="ru">Русский</option>
+        <option value="uz-lat">O‘zbek</option>
+        <option value="uz-cyr">Ўзбекча</option>
+        <option value="en">English</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<main>
+<div class="eyebrow" id="eyebrow"></div>
+<h1 id="title"></h1>
+<p class="lead" id="lead"></p>
+<div class="notice"><strong id="noticeTitle"></strong><span id="noticeText"></span></div><div style="margin-top:-14px;margin-bottom:18px"><span id="demoBadge" style="display:inline-block;padding:7px 10px;border-radius:999px;background:#e8f4ef;color:#276453;font-size:12px;font-weight:750">Демонстрационный режим для защиты</span></div>
+
+<div class="toolbar">
+  <button class="btn primary" id="refresh"></button>
+  <label class="btn file-btn"><span id="importLabel"></span><input id="fileInput" type="file" accept=".json,application/json" multiple></label>
+  <button class="btn" id="demo"></button>
+  <button class="btn" id="clearDemo"></button>
+</div>
+
+<section class="overview">
+ <div class="kpi"><span id="k1"></span><strong id="v1"></strong></div>
+ <div class="kpi"><span id="k2"></span><strong id="v2"></strong></div>
+ <div class="kpi"><span id="k3"></span><strong id="v3"></strong></div>
+ <div class="kpi"><span id="k4"></span><strong id="v4"></strong></div>
+</section>
+
+<div class="table-wrap">
+<table class="table">
+<thead><tr><th id="thStudent"></th><th id="thLabs"></th><th id="thEvidence"></th><th id="thReview"></th><th id="thAction"></th></tr></thead>
+<tbody id="rows"></tbody>
+</table>
+</div>
+
+<section class="profile-panel" id="panel">
+<div class="profile-head"><div><h2 id="panelTitle"></h2><div class="muted" id="panelSub"></div></div><button class="btn" id="close"></button></div>
+<div class="grid2" id="components"></div>
+</section>
+</main>
+<footer id="footer"></footer>
+
+<script>
+const T={
+ru:{eyebrow:"КАБИНЕТ ПРЕПОДАВАТЕЛЯ",title:"Мониторинг результатов студентов",lead:"Рабочая панель для просмотра прохождения Labs, наблюдаемых свидетельств и показателей, которые требуют экспертной проверки.",noticeTitle:"Текущий режим",noticeText:"Это локальный прототип без регистрации и сервера. Реальные данные берутся из этого браузера и из импортированных JSON-записей. Числовой научный балл не рассчитывается.",refresh:"Обновить",import:"Импорт JSON",demo:"Показать демо-студента",clearDemo:"Убрать демо",k1:"Студентов",k2:"Пройдено модулей",k3:"Зафиксировано свидетельств",k4:"На экспертной проверке",thStudent:"Студент / источник",thLabs:"Labs",thEvidence:"Свидетельства",thReview:"Экспертная проверка",thAction:"Действие",open:"Открыть профиль",noData:"Пока нет записей. Пройдите Lab или импортируйте JSON.",local:"Текущий браузер",imported:"Импортированный файл",demoName:"Демо-студент",panelTitle:"Профиль студента",panelSub:"Система показывает наблюдаемые свидетельства; это не итоговая научная оценка.",close:"Закрыть",footer:"Следующий этап — подключение нескольких реальных студентов через постоянное хранилище и авторизацию.",completed:"пройден",candidate:"на проверке",components:{cognitive:"Когнитивный",social:"Социально-коммуникативный",digital:"Цифровая грамотность",reflective:"Рефлексивно-регулятивный"},nothing:"Нет зафиксированных данных"},
+"uz-lat":{eyebrow:"O‘QITUVCHI KABINETI",title:"Talabalar natijalarini monitoring qilish",lead:"Labsdan o‘tish, kuzatiladigan dalillar va ekspert tekshiruvini talab qiladigan ko‘rsatkichlarni ko‘rish uchun ishchi panel.",noticeTitle:"Joriy rejim",noticeText:"Bu server va ro‘yxatdan o‘tishsiz lokal prototip. Ma’lumotlar brauzerdan va import qilingan JSON yozuvlardan olinadi. Yakuniy ilmiy ball hisoblanmaydi.",refresh:"Yangilash",import:"JSON import",demo:"Demo talabani ko‘rsatish",clearDemo:"Demoni olib tashlash",k1:"Talabalar",k2:"Yakunlangan modullar",k3:"Qayd etilgan dalillar",k4:"Ekspert tekshiruvida",thStudent:"Talaba / manba",thLabs:"Labs",thEvidence:"Dalillar",thReview:"Ekspert tekshiruvi",thAction:"Harakat",open:"Profilni ochish",noData:"Hozircha yozuvlar yo‘q. Labni yakunlang yoki JSON import qiling.",local:"Joriy brauzer",imported:"Import qilingan fayl",demoName:"Demo talaba",panelTitle:"Talaba profili",panelSub:"Tizim kuzatiladigan dalillarni ko‘rsatadi; bu yakuniy ilmiy baho emas.",close:"Yopish",footer:"Keyingi bosqich — doimiy saqlash va avtorizatsiya orqali bir nechta real talabalarni ulash.",completed:"yakunlangan",candidate:"tekshiruvda",components:{cognitive:"Kognitiv",social:"Ijtimoiy-kommunikativ",digital:"Raqamli savodxonlik",reflective:"Refleksiv-regulyativ"},nothing:"Qayd etilgan ma’lumot yo‘q"},
+"uz-cyr":{eyebrow:"ЎҚИТУВЧИ КАБИНЕТИ",title:"Талабалар натижаларини мониторинг қилиш",lead:"Labsдан ўтиш, кузатиладиган далиллар ва эксперт текширувини талаб қиладиган кўрсаткичларни кўриш учун ишчи панель.",noticeTitle:"Жорий режим",noticeText:"Бу сервер ва рўйхатдан ўтишсиз локал прототип. Маълумотлар браузердан ва импорт қилинган JSON ёзувлардан олинади. Якуний илмий балл ҳисобланмайди.",refresh:"Янгилаш",import:"JSON импорт",demo:"Демо талабани кўрсатиш",clearDemo:"Демони олиб ташлаш",k1:"Талабалар",k2:"Якунланган модуллар",k3:"Қайд этилган далиллар",k4:"Эксперт текширувида",thStudent:"Талаба / манба",thLabs:"Labs",thEvidence:"Далиллар",thReview:"Эксперт текшируви",thAction:"Ҳаракат",open:"Профилни очиш",noData:"Ҳозирча ёзувлар йўқ. Labни якунланг ёки JSON импорт қилинг.",local:"Жорий браузер",imported:"Импорт қилинган файл",demoName:"Демо талаба",panelTitle:"Талаба профили",panelSub:"Тизим кузатиладиган далилларни кўрсатади; бу якуний илмий баҳо эмас.",close:"Ёпиш",footer:"Кейинги босқич — доимий сақлаш ва авторизация орқали бир нечта реал талабаларни улаш.",completed:"якунланган",candidate:"текширувда",components:{cognitive:"Когнитив",social:"Ижтимоий-коммуникатив",digital:"Рақамли саводхонлик",reflective:"Рефлексив-регулятив"},nothing:"Қайд этилган маълумот йўқ"},
+en:{eyebrow:"TEACHER DASHBOARD",title:"Student results monitoring",lead:"A working panel for reviewing Lab completion, observable evidence and indicators that require expert review.",noticeTitle:"Current mode",noticeText:"This is a local prototype without accounts or a server. Data comes from this browser and imported JSON records. No final scientific score is calculated.",refresh:"Refresh",import:"Import JSON",demo:"Show demo student",clearDemo:"Remove demo",k1:"Students",k2:"Modules completed",k3:"Evidence captured",k4:"Expert review",thStudent:"Student / source",thLabs:"Labs",thEvidence:"Evidence",thReview:"Expert review",thAction:"Action",open:"Open profile",noData:"No records yet. Complete a Lab or import JSON.",local:"Current browser",imported:"Imported file",demoName:"Demo student",panelTitle:"Student profile",panelSub:"The system shows observable evidence; this is not a final scientific score.",close:"Close",footer:"Next stage: connect multiple real students through persistent storage and authentication.",completed:"completed",candidate:"under review",components:{cognitive:"Cognitive",social:"Socio-communicative",digital:"Digital literacy",reflective:"Reflexive-regulatory"},nothing:"No captured data"}
+};
+
+const compNames={cognitive:"cognitive",social:"social",digital:"digital",reflective:"reflective"};
+let imported=JSON.parse(localStorage.getItem("tl-teacher-imported")||"[]");
+let demoShown=true;
+let selected=null;
+
+function lang(){const l=localStorage.getItem("tl_lang")||"ru";return T[l]?l:"ru"}
+function getRecords(){
+  const localLabs=[1,2,3,4,5].map(n=>localStorage.getItem(`tl-lab${n}-case01`)).filter(Boolean).map(x=>JSON.parse(x));
+  const demo=demoShown?[{
+    source:"demo",name:T[lang()].demoName,
+    records:{
+      2:{evidence:{K1:{status:"captured"},K6:{status:"captured"},DL3:{status:"candidate"}}},
+      3:{evidence:{SC2:{status:"candidate"},SC3:{status:"candidate"},SC6:{status:"candidate"}}},
+      4:{evidence:{DL2:{status:"candidate"},DL3:{status:"candidate"},DL6:{status:"candidate"}}},
+      5:{evidence:{RR2:{status:"candidate"},RR5:{status:"candidate"},RR6:{status:"candidate"},RR7:{status:"candidate"}}}
+    }
+  }]:[];
+  const current={source:"local",name:T[lang()].local,records:Object.fromEntries(localLabs.map(r=>[Number((r.lab||"Lab 0").match(/\d+/)?.[0]||0),r]))};
+  const im=imported.map(r=>({source:"import",name:r.name||r.source||T[lang()].imported,records:r.records||{}}));
+  return (localLabs.length? [current]:[]).concat(im,demo);
+}
+function collect(rec){
+  const e=[]; for(const [lab,r] of Object.entries(rec.records||{})){
+    if(!r)continue;
+    if(r.evidence){for(const [id,v] of Object.entries(r.evidence)){if(v?.status)e.push({id,status:v.status,lab:Number(lab)})}}
+  }
+  return e;
+}
+function render(){
+  const x=T[lang()];
+  for(const id of ["eyebrow","title","lead","noticeTitle","noticeText","refresh","importLabel","demo","clearDemo","k1","k2","k3","k4","thStudent","thLabs","thEvidence","thReview","thAction","panelTitle","panelSub","close","footer","home","studentProfile","teacherCurrent"])
+    document.getElementById(id).textContent=x[id];
+  document.getElementById("lang").value=lang();
+  const records=getRecords();
+  const uniqueStudents=records.length;
+  let done=0,evidence=0,candidates=0;
+  records.forEach(r=>{for(let n=1;n<=5;n++)if(r.records[n])done++; const ev=collect(r); evidence+=ev.filter(e=>e.status==="captured").length;candidates+=ev.filter(e=>e.status==="candidate").length});
+  document.getElementById("v1").textContent=uniqueStudents;document.getElementById("v2").textContent=done;document.getElementById("v3").textContent=evidence;document.getElementById("v4").textContent=candidates;
+  const rows=document.getElementById("rows"); rows.innerHTML="";
+  if(!records.length){rows.innerHTML=`<tr><td colspan="5"><div class="muted">${x.noData}</div></td></tr>`;return}
+  records.forEach((r,i)=>{
+    const labs=[];for(let n=1;n<=5;n++)labs.push(`<span class="pill ${r.records[n]?"done":"todo"}">Lab ${n}${r.records[n]?" ✓":""}</span>`);
+    const ev=collect(r), cap=ev.filter(e=>e.status==="captured").length,cand=ev.filter(e=>e.status==="candidate").length;
+    const tr=document.createElement("tr");
+    tr.innerHTML=`<td><div class="student-name">${esc(r.name)}</div><div class="small">${r.source==="local"?x.local:r.source==="demo"?x.demoName:x.imported}</div></td>
+      <td>${labs.join("")}</td>
+      <td><span class="pill done">${cap} ${x.k3.toLowerCase()}</span><span class="pill candidate">${cand} ${x.candidate}</span></td>
+      <td>${cand?`<span class="pill candidate">${cand} ${x.candidate}</span>`:`<span class="pill todo">0</span>`}</td>
+      <td><button class="btn" data-open="${i}">${x.open}</button></td>`;
+    rows.appendChild(tr);
+  });
+  rows.querySelectorAll("[data-open]").forEach(btn=>btn.addEventListener("click",()=>showProfile(Number(btn.dataset.open))));
+}
+function showProfile(i){
+  const records=getRecords(),r=records[i],x=T[lang()];if(!r)return;
+  selected=i;document.getElementById("panel").style.display="block";document.getElementById("panelTitle").textContent=`${x.panelTitle}: ${r.name}`;
+  const ev=collect(r);const by={cognitive:[],social:[],digital:[],reflective:[]};
+  const map={K:"cognitive",SC:"social",DL:"digital",RR:"reflective"};
+  ev.forEach(e=>{const prefix=e.id.startsWith("SC")?"SC":e.id.slice(0,2);const c=map[prefix]||"cognitive";if(by[c])by[c].push(e)});
+  document.getElementById("components").innerHTML=Object.keys(by).map(k=>`<div class="comp"><h3>${x.components[k]}</h3>${by[k].length?`<div class="tagbox">${by[k].map(e=>`<span class="evidence ${e.status==="candidate"?"candidate":""}">${esc(e.id)} · Lab ${e.lab} · ${e.status==="captured"?x.completed:x.candidate}</span>`).join("")}</div>`:`<div class="empty">${x.nothing}</div>`}</div>`).join("");
+  document.getElementById("panel").scrollIntoView({behavior:"smooth",block:"start"});
+}
+function esc(v){return String(v).replace(/[&<>'"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]))}
+document.getElementById("lang").addEventListener("change",e=>{localStorage.setItem("tl_lang",e.target.value);render()});
+document.getElementById("refresh").addEventListener("click",render);
+document.getElementById("demo").addEventListener("click",()=>{demoShown=true;render()});
+document.getElementById("clearDemo").addEventListener("click",()=>{demoShown=false;render()});
+document.getElementById("close").addEventListener("click",()=>document.getElementById("panel").style.display="none");
+document.getElementById("fileInput").addEventListener("change",async e=>{
+  const files=[...e.target.files];for(const file of files){try{
+    const txt=await file.text(),obj=JSON.parse(txt);
+    imported.push({name:obj.studentName||obj.student||file.name,source:"import",records:{[Number((obj.lab||obj.labName||"Lab 2").match(/\d+/)?.[0]||2)]:obj}});
+  }catch(err){}}
+  localStorage.setItem("tl-teacher-imported",JSON.stringify(imported));e.target.value="";render();
+});
+render();
+</script>
+
+<script>
+(function(){
+  const NAV_TEXT={
+    ru:{studentRole:"Студент",labLink:"Лаборатория",profileLinkNav:"Мой профиль",teacherRole:"Преподаватель",teacherLinkNav:"Кабинет"},
+    "uz-lat":{studentRole:"Talaba",labLink:"Laboratoriya",profileLinkNav:"Mening profilim",teacherRole:"O‘qituvchi",teacherLinkNav:"Kabinet"},
+    "uz-cyr":{studentRole:"Талаба",labLink:"Лаборатория",profileLinkNav:"Менинг профилим",teacherRole:"Ўқитувчи",teacherLinkNav:"Кабинет"},
+    en:{studentRole:"Student",labLink:"Laboratory",profileLinkNav:"My profile",teacherRole:"Teacher",teacherLinkNav:"Dashboard"}
+  };
+  function current(){const l=localStorage.getItem("tl_lang")||"ru";return NAV_TEXT[l]?l:"ru"}
+  function paint(){
+    const x=NAV_TEXT[current()];
+    document.querySelectorAll("[data-global]").forEach(el=>{
+      const key=el.getAttribute("data-global"); if(x[key]) el.textContent=x[key];
+    });
+    document.querySelectorAll("[data-page]").forEach(el=>{
+      el.classList.toggle("active",el.getAttribute("data-page")===(document.body.getAttribute("data-page")||"lab"));
+    });
+  }
+  document.addEventListener("DOMContentLoaded",()=>{
+    const sel=document.getElementById("lang")||document.getElementById("languageSelect");
+    if(sel){
+      const shared=localStorage.getItem("tl_lang");
+      if(shared && [...sel.options].some(o=>o.value===shared)) sel.value=shared;
+      sel.addEventListener("change",()=>{localStorage.setItem("tl_lang",sel.value);paint()});
+    }
+    paint();
+  });
+  window.addEventListener("storage",paint);
+})();
+</script>
+<script src="demo.js"></script>
+</body>
+</html>
