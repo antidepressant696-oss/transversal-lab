@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Transversal Lab — интерактивная цифровая среда для развития трансверсальных компетенций будущих учителей начальных классов." />
+  <title>Transversal Lab — педагогическая лаборатория</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="lab">
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="Transversal Lab">
+        <span class="brand-mark">TL</span>
+        <span>
+          <strong>Transversal Lab</strong>
+          <small>педагогическая лаборатория</small>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Основная навигация">
+        <a href="#lab">Лаборатория</a>
+        <a href="#method">Методика</a>
+        <a href="#competencies">Компетенции</a>
+        <a href="#about">О проекте</a>
+      </nav>
+
+      <div class="top-actions">
+        <nav class="tl-role-nav" aria-label="Навигация Transversal Lab">
+      <span class="tl-role-label" data-global="studentRole">Студент</span>
+      <a class="tl-nav-link active" data-page="lab" data-global="labLink" href="../../index.html">Лаборатория</a>
+      <a class="tl-nav-link" data-page="profile" data-global="profileLinkNav" href="../../profile.html">Мой профиль</a>
+      <span class="tl-divider" aria-hidden="true"></span>
+      <span class="tl-role-label" data-global="teacherRole">Преподаватель</span>
+      <a class="tl-nav-link" data-page="teacher" data-global="teacherLinkNav" href="../../teacher.html">Кабинет</a>
+    </nav>
+        <label class="lang-select">
+          <span class="sr-only">Язык</span>
+          <select id="languageSelect">
+            <option value="ru">RU</option>
+            <option value="uz">UZ</option>
+            <option value="uzc">ЎЗ</option>
+            <option value="en">EN</option>
+          </select>
+        </label>
+        <button class="ghost-btn" id="resetBtn" type="button">Сбросить</button>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero" id="lab">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="pulse"></span><span data-i18n="eyebrow">ИНТЕРАКТИВНАЯ ПЕДАГОГИЧЕСКАЯ СИТУАЦИЯ</span></div>
+          <h1 data-i18n="heroTitle">Сначала пойми ситуацию. <em>Потом принимай решение.</em></h1>
+          <p data-i18n="heroText">Transversal Lab превращает профессиональную ситуацию в пространство анализа, действия и рефлексии — без готового «правильного ответа» на старте.</p>
+          <div class="hero-actions">
+            <button class="primary-btn" id="startBtn" type="button">
+              <span data-i18n="startCta">Открыть педагогическую ситуацию</span>
+              <span class="arrow">→</span>
+            </button>
+            <a class="text-link" href="#method" data-i18n="howLink">Как это работает</a>
+          </div>
+          <div class="micro-note" data-i18n="demoNote">Демонстрационный MVP. Оценочные веса и пороги в научной версии будут уточняться по результатам апробации.</div>
+        </div>
+
+        <div class="hero-visual classroom-board" aria-label="Предпросмотр педагогической ситуации">
+          <div class="scene-toolbar">
+            <span class="scene-dot"></span>
+            <span>CASE 01</span>
+            <span class="scene-time">≈ 3 минуты</span>
+          </div>
+
+          <div class="scene-header">
+            <div>
+              <span class="scene-kicker">2 КЛАСС · ГРУППОВАЯ РАБОТА</span>
+              <h3>Группа перестала работать</h3>
+            </div>
+            <span class="scene-chip">10 мин</span>
+          </div>
+
+          <div class="classroom-scene">
+            <div class="board-note">Задание: создать общий постер</div>
+            <div class="desk desk-left"><span class="avatar avatar-blue">А</span><span class="speech">Я больше не хочу.</span></div>
+            <div class="desk desk-center"><span class="avatar avatar-green">М</span><span class="speech speech-warn">Дай сюда, ты всё испортил!</span></div>
+            <div class="desk desk-right"><span class="avatar avatar-violet">С</span><span class="speech">Мы не успеем.</span></div>
+            <div class="teacher-card">
+              <span class="teacher-avatar">В</span>
+              <div><strong>Вы — учитель</strong><small>Причины поведения пока неясны</small></div>
+            </div>
+          </div>
+
+          <div class="scene-footer">
+            <div class="observation">
+              <span class="observation-icon">✓</span>
+              <div><strong>Сначала наблюдай</strong><small>Что в ситуации является фактом, а что — предположением?</small></div>
+            </div>
+            <div class="component-mini-list">
+              <span>Когнитивный</span>
+              <span>Коммуникация</span>
+              <span>Рефлексия</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section" id="case">
+        <div class="section-heading">
+          <div>
+            <span class="section-index">01 / 03</span>
+            <h2 data-i18n="caseTitle">Разберись в ситуации и выбери своё действие.</h2>
+          </div>
+          <div class="case-status"><span class="status-dot"></span><span id="caseStatus">Демонстрация</span></div>
+        </div>
+
+        <div class="case-layout">
+          <aside class="case-sidebar">
+            <div class="side-card">
+              <div class="side-label">КОНТЕКСТ</div>
+              <p id="caseContext">2 класс · групповая работа · до конца урока 10 минут</p>
+            </div>
+            <div class="side-card compact">
+              <div class="side-label">ЗАДЕЙСТВУЮТСЯ</div>
+              <div class="mini-pills">
+                <span>анализ</span><span>медиация</span><span>решение</span><span>рефлексия</span>
+              </div>
+            </div>
+            <div class="side-card progress-card">
+              <div class="progress-label"><span>Путь</span><strong id="progressLabel">1 / 3</strong></div>
+              <div class="progress-track"><span id="progressBar"></span></div>
+            </div>
+          </aside>
+
+          <article class="case-card">
+            <div class="case-topline">
+              <span class="case-type">CASE / 01</span>
+              <span class="case-time">≈ 3 минуты</span>
+            </div>
+            <div class="scenario-badge">Педагогическая ситуация</div>
+            <h3 id="scenarioTitle">Групповая работа остановилась</h3>
+            <p id="scenarioText">Во время группового задания один ученик перестал участвовать, второй спорит с одноклассниками, а группа теряет время. Вы понимаете, что немедленное вмешательство необходимо, но причины поведения пока неясны.</p>
+
+            <div class="decision-prompt" id="decisionPrompt">Какое действие вы выберете первым?</div>
+            <div class="choices" id="choices"></div>
+
+            <div class="case-footer">
+              <span class="hint">Подсказка: <span id="hintText">несколько решений могут быть педагогически допустимыми; оценивается качество выбора и обоснования.</span></span>
+              <button class="secondary-btn" id="nextBtn" type="button" disabled>Продолжить →</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="result-section hidden" id="resultSection">
+        <div class="result-head">
+          <div>
+            <span class="section-index">02 / 03</span>
+            <h2>Результат — не оценка личности, а профиль следующего шага.</h2>
+          </div>
+          <div class="score-badge" id="overallScore">—</div>
+        </div>
+
+        <div class="result-grid">
+          <div class="result-main glass-card">
+            <div class="result-main-top">
+              <div>
+                <div class="side-label">СВОДКА</div>
+                <h3 id="resultTitle">Анализ завершён</h3>
+              </div>
+              <span class="score-scale">Шкала 3–2–1</span>
+            </div>
+            <p id="resultText">Вы получили демонстрационный профиль по четырём компонентам. В реальной версии оценки будут основаны на валидированных диагностических заданиях.</p>
+            <div class="bars" id="bars"></div>
+          </div>
+
+          <div class="reflection-card glass-card">
+            <div class="side-label">РЕФЛЕКСИЯ</div>
+            <h3>Что изменило бы ваш выбор?</h3>
+            <textarea id="reflection" placeholder="Например: я бы сначала выслушал участников, а затем перераспределил роли…"></textarea>
+            <button class="primary-btn small" id="saveReflection" type="button">Сохранить рефлексию</button>
+            <div class="saved-note hidden" id="savedNote">Сохранено локально в браузере ✓</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="method-section" id="method">
+        <div class="section-heading">
+          <div>
+            <span class="section-index">03 / 03</span>
+            <h2>Цифровая оболочка повторяет логику методики.</h2>
+          </div>
+        </div>
+
+        <div class="method-flow">
+          <div class="flow-step active"><span>01</span><strong>Диагностика</strong><small>Понять исходный уровень и мотивацию.</small></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step"><span>02</span><strong>Практика</strong><small>Разобрать реальную или моделируемую ситуацию.</small></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step"><span>03</span><strong>Интеграция и рефлексия</strong><small>Оценить решение и определить следующий шаг.</small></div>
+        </div>
+      </section>
+
+      <section class="competency-section" id="competencies">
+        <div class="competency-intro">
+          <span class="section-index">4 КОМПОНЕНТА</span>
+          <h2>Компетенции работают <em>вместе</em>, а не по отдельности.</h2>
+          <p>В профессиональной ситуации будущий учитель одновременно анализирует проблему, взаимодействует с участниками, при необходимости использует цифровые ресурсы и корректирует собственные действия.</p>
+        </div>
+        <div class="competency-grid">
+          <article class="comp-card comp-1"><span>01</span><h3>Когнитивный</h3><p>анализ ситуации, критическое мышление, поиск решений, обоснованный выбор.</p></article>
+          <article class="comp-card comp-2"><span>02</span><h3>Социально-коммуникативный</h3><p>слушание, взаимодействие, сотрудничество, согласование позиций.</p></article>
+          <article class="comp-card comp-3"><span>03</span><h3>Цифровая грамотность</h3><p>поиск, оценка и целенаправленное использование цифровых ресурсов.</p></article>
+          <article class="comp-card comp-4"><span>04</span><h3>Рефлексивно-регулятивный</h3><p>анализ результата, самооценка, корректировка и планирование следующего действия.</p></article>
+        </div>
+      </section>
+
+      <section class="about-section" id="about">
+        <div class="about-card">
+          <div>
+            <span class="section-index">О ПРОЕКТЕ</span>
+            <h2>Не «ещё одна LMS». <br/><em>Цифровой инструмент исследования.</em></h2>
+          </div>
+          <p>Первый MVP не заменяет LMS и не претендует на готовую валидированную диагностическую систему. Его задача — реализовать цифровой сценарий методики и подготовить основу для апробации на студентах.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="brand footer-brand"><span class="brand-mark">TL</span><span><strong>Transversal Lab</strong><small>research prototype · v0.1</small></span></div>
+      <span>© 2026 · MVP без серверной части</span>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+
+<script>
+(function(){
+  const NAV_TEXT={
+    ru:{studentRole:"Студент",labLink:"Лаборатория",profileLinkNav:"Мой профиль",teacherRole:"Преподаватель",teacherLinkNav:"Кабинет"},
+    "uz-lat":{studentRole:"Talaba",labLink:"Laboratoriya",profileLinkNav:"Mening profilim",teacherRole:"O‘qituvchi",teacherLinkNav:"Kabinet"},
+    "uz-cyr":{studentRole:"Талаба",labLink:"Лаборатория",profileLinkNav:"Менинг профилим",teacherRole:"Ўқитувчи",teacherLinkNav:"Кабинет"},
+    en:{studentRole:"Student",labLink:"Laboratory",profileLinkNav:"My profile",teacherRole:"Teacher",teacherLinkNav:"Dashboard"}
+  };
+  function current(){const l=localStorage.getItem("tl_lang")||"ru";return NAV_TEXT[l]?l:"ru"}
+  function paint(){
+    const x=NAV_TEXT[current()];
+    document.querySelectorAll("[data-global]").forEach(el=>{
+      const key=el.getAttribute("data-global"); if(x[key]) el.textContent=x[key];
+    });
+    document.querySelectorAll("[data-page]").forEach(el=>{
+      el.classList.toggle("active",el.getAttribute("data-page")===(document.body.getAttribute("data-page")||"lab"));
+    });
+  }
+  document.addEventListener("DOMContentLoaded",()=>{
+    const sel=document.getElementById("lang")||document.getElementById("languageSelect");
+    if(sel){
+      const shared=localStorage.getItem("tl_lang");
+      if(shared && [...sel.options].some(o=>o.value===shared)) sel.value=shared;
+      sel.addEventListener("change",()=>{localStorage.setItem("tl_lang",sel.value);paint()});
+    }
+    paint();
+  });
+  window.addEventListener("storage",paint);
+})();
+</script>
+</body>
+</html>

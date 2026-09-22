@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Transversal Lab — Lab 2 v0.4</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="lab">
+  <header class="topbar">
+    <a class="brand" href="#top">
+      <span class="brand-mark">TL</span>
+      <span><strong>Transversal Lab</strong><small>Lab 2 · педагогический кейс</small></span>
+    </a>
+    <div class="top-actions">
+        <nav class="tl-role-nav" aria-label="Навигация Transversal Lab">
+      <span class="tl-role-label" data-global="studentRole">Студент</span>
+      <a class="tl-nav-link active" data-page="lab" data-global="labLink" href="../../index.html">Лаборатория</a>
+      <a class="tl-nav-link" data-page="profile" data-global="profileLinkNav" href="../../profile.html">Мой профиль</a>
+      <span class="tl-divider" aria-hidden="true"></span>
+      <span class="tl-role-label" data-global="teacherRole">Преподаватель</span>
+      <a class="tl-nav-link" data-page="teacher" data-global="teacherLinkNav" href="../../teacher.html">Кабинет</a>
+    </nav>
+        <span class="lab-badge">LAB 2 / CASE 01</span>
+        <label class="language-select"><span class="sr-only">Language</span><select id="languageSelect"><option value="ru">Русский</option><option value="uz-lat">O‘zbek</option><option value="uz-cyr">Ўзбекча</option><option value="en">English</option></select></label>
+      </div>
+    </header>
+
+  <main id="top" class="wrap">
+    <section class="intro">
+      <div>
+        <div class="eyebrow">ИНТЕРАКТИВНАЯ ПРОФЕССИОНАЛЬНАЯ СИТУАЦИЯ</div>
+        <h1 id="hero"></h1>
+        <p id="intro"></p>
+      </div>
+      <div class="stepper">
+        <div class="step active"><b>01</b><span>Наблюдай</span></div>
+        <div class="line"></div>
+        <div class="step"><b>02</b><span>Решай</span></div>
+        <div class="line"></div>
+        <div class="step"><b>03</b><span>Рефлексируй</span></div>
+      </div>
+    </section>
+
+    <section class="scene-card">
+      <div class="scene-head">
+        <div>
+          <span class="kicker">2 КЛАСС · ГРУППОВАЯ РАБОТА</span>
+          <h2 id="caseTitle"></h2>
+        </div>
+        <span class="time-chip">10 минут до конца урока</span>
+      </div>
+      <div class="scene-body">
+        <div class="classroom">
+          <div class="board"><span>ЗАДАНИЕ</span><strong>Создать общий постер</strong><small>Работа в группе из трёх человек</small></div>
+          <div class="student-card s1"><span class="avatar blue">А</span><div><b>Алия</b><small>отодвинулась от группы</small></div><div class="quote">«Я больше не хочу.»</div></div>
+          <div class="student-card s2"><span class="avatar green">М</span><div><b>Мухаммад</b><small>спорит с одноклассником</small></div><div class="quote warn">«Дай сюда, ты всё испортил!»</div></div>
+          <div class="student-card s3"><span class="avatar violet">С</span><div><b>София</b><small>смотрит на часы</small></div><div class="quote">«Мы не успеем.»</div></div>
+          <div class="teacher-bubble"><span class="avatar teacher">В</span><div><b>Вы — учитель</b><small>Причины поведения ещё не ясны</small></div></div>
+        </div>
+        <aside class="observation-panel">
+          <div class="panel-title">Что вы уже знаете?</div>
+          <div class="fact"><span>✓</span><p>Один ученик перестал участвовать.</p></div>
+          <div class="fact"><span>✓</span><p>Между двумя учениками возник спор.</p></div>
+          <div class="fact"><span>✓</span><p>Группа теряет время.</p></div>
+          <div class="warning"><strong>Пока нельзя утверждать:</strong><br>почему именно ученики так реагируют.</div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="work-card" id="work">
+      <div class="work-head">
+        <div><span class="section-no">01 / 03</span><h2 id="s1"></h2><p id="s1p"></p></div>
+        <div class="progress"><span id="progressText">0 / 3</span><div><i id="progressBar"></i></div></div>
+      </div>
+      <div class="facts-grid" id="factsGrid"></div>
+      <button class="primary" id="toDecision" disabled></button>
+    </section>
+
+    <section class="work-card hidden" id="decisionSection">
+      <div class="work-head"><div><span class="section-no">02 / 04</span><h2 id="s2"></h2><p id="s2p"></p></div></div>
+      <div class="decision-grid" id="decisionGrid"></div>
+      <div class="reason-box hidden" id="reasonBox">
+        <label for="reason">Почему именно это действие?</label>
+        <textarea id="reason" maxlength="450" placeholder="Например: сначала хочу понять позиции участников и только после этого менять организацию работы..."></textarea>
+        <div class="reason-footer"><span><b id="charCount">0</b> / 450</span><button class="primary" id="toDigital"></button></div>
+      </div>
+    </section>
+
+    <section class="work-card hidden" id="digitalSection">
+      <div class="work-head"><div><span class="section-no">03 / 04</span><h2 id="s3"></h2><p id="s3p"></p></div></div>
+      <div class="decision-grid" id="digitalGrid"></div>
+      <div class="reason-box hidden" id="digitalReasonBox">
+        <label for="digitalReason">Почему этот цифровой выбор соответствует педагогической задаче?</label>
+        <textarea id="digitalReason" maxlength="400" placeholder="Объясни, зачем инструмент нужен или почему без него можно обойтись..."></textarea>
+        <div class="reason-footer"><span><b id="digitalCharCount">0</b> / 400</span></div>
+      </div>
+      <div class="work-hint">Здесь оценивается не владение программой само по себе, а соответствие инструмента педагогической задаче, ответственность и критическая оценка цифрового результата.</div>
+      <button class="primary" id="toReflection" disabled></button>
+    </section>
+
+    <section class="work-card hidden" id="reflectionSection">
+      <div class="work-head"><div><span class="section-no">04 / 04</span><h2 id="s4"></h2><p id="s4p"></p></div></div>
+      <div class="reflection-layout">
+        <div class="reflection-prompt"><strong>Новая информация</strong><p id="reflectionInfo"></p><span id="reflectionLabel"></span></div>
+        <textarea id="reflection"></textarea>
+      </div>
+      <button class="primary" id="finishBtn" disabled></button>
+    </section>
+
+    <section class="result-card hidden" id="resultSection">
+      <div class="result-top">
+        <div>
+          <span class="section-no" id="resultLabel"></span>
+          <h2 id="resultTitle"></h2>
+          <p id="resultText"></p>
+        </div>
+        <div class="score-circle"><span>4</span><small>компонента</small></div>
+      </div>
+
+      <div class="profile-grid" id="profileGrid"></div>
+
+      <div class="result-note">
+        <strong id="rule"></strong> <span id="ruleText"></span>
+      </div>
+
+      <details class="json-preview">
+        <summary>Показать диагностическую запись</summary>
+        <pre id="diagnosticJson"></pre>
+      </details>
+
+      <div class="result-actions">
+        <button class="secondary" id="downloadRecord"></button>
+        <button class="secondary" id="resetCase"></button>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+
+<script>
+(function(){
+  const NAV_TEXT={
+    ru:{studentRole:"Студент",labLink:"Лаборатория",profileLinkNav:"Мой профиль",teacherRole:"Преподаватель",teacherLinkNav:"Кабинет"},
+    "uz-lat":{studentRole:"Talaba",labLink:"Laboratoriya",profileLinkNav:"Mening profilim",teacherRole:"O‘qituvchi",teacherLinkNav:"Kabinet"},
+    "uz-cyr":{studentRole:"Талаба",labLink:"Лаборатория",profileLinkNav:"Менинг профилим",teacherRole:"Ўқитувчи",teacherLinkNav:"Кабинет"},
+    en:{studentRole:"Student",labLink:"Laboratory",profileLinkNav:"My profile",teacherRole:"Teacher",teacherLinkNav:"Dashboard"}
+  };
+  function current(){const l=localStorage.getItem("tl_lang")||"ru";return NAV_TEXT[l]?l:"ru"}
+  function paint(){
+    const x=NAV_TEXT[current()];
+    document.querySelectorAll("[data-global]").forEach(el=>{
+      const key=el.getAttribute("data-global"); if(x[key]) el.textContent=x[key];
+    });
+    document.querySelectorAll("[data-page]").forEach(el=>{
+      el.classList.toggle("active",el.getAttribute("data-page")===(document.body.getAttribute("data-page")||"lab"));
+    });
+  }
+  document.addEventListener("DOMContentLoaded",()=>{
+    const sel=document.getElementById("lang")||document.getElementById("languageSelect");
+    if(sel){
+      const shared=localStorage.getItem("tl_lang");
+      if(shared && [...sel.options].some(o=>o.value===shared)) sel.value=shared;
+      sel.addEventListener("change",()=>{localStorage.setItem("tl_lang",sel.value);paint()});
+    }
+    paint();
+  });
+  window.addEventListener("storage",paint);
+})();
+</script>
+</body>
+</html>

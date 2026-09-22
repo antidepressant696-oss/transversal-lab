@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Transversal Lab — Lab 3</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="lab">
+<header class="topbar">
+  <a class="brand" href="#top"><span class="brand-mark">TL</span><span><strong>Transversal Lab</strong><small id="brandSub">Lab 3 · коммуникационный кейс</small></span></a>
+  <div class="top-actions"><nav class="tl-role-nav" aria-label="Навигация Transversal Lab">
+      <span class="tl-role-label" data-global="studentRole">Студент</span>
+      <a class="tl-nav-link active" data-page="lab" data-global="labLink" href="../../index.html">Лаборатория</a>
+      <a class="tl-nav-link" data-page="profile" data-global="profileLinkNav" href="../../profile.html">Мой профиль</a>
+      <span class="tl-divider" aria-hidden="true"></span>
+      <span class="tl-role-label" data-global="teacherRole">Преподаватель</span>
+      <a class="tl-nav-link" data-page="teacher" data-global="teacherLinkNav" href="../../teacher.html">Кабинет</a>
+    </nav>
+    <span class="lab-badge" id="labBadge">LAB 3 / CASE 01</span>
+    <label class="language-select"><span class="sr-only">Language</span><select id="languageSelect"><option value="ru">Русский</option><option value="uz-lat">O‘zbek</option><option value="uz-cyr">Ўзбекча</option><option value="en">English</option></select></label>
+  </div>
+</header>
+
+<main id="top" class="wrap">
+  <section class="intro">
+    <div>
+      <div class="eyebrow" id="eyebrow"></div>
+      <h1 id="heroTitle"></h1>
+      <p id="heroText"></p>
+    </div>
+    <div class="stepper">
+      <div class="step active"><b>01</b><span id="step1"></span></div><div class="line"></div>
+      <div class="step"><b>02</b><span id="step2"></span></div><div class="line"></div>
+      <div class="step"><b>03</b><span id="step3"></span></div>
+    </div>
+  </section>
+
+  <section class="scene-card">
+    <div class="scene-head"><div><span class="kicker" id="sceneKicker"></span><h2 id="sceneTitle"></h2></div><span class="time-chip" id="timeChip"></span></div>
+    <div class="scene-body">
+      <div class="classroom">
+        <div class="board"><span id="boardLabel"></span><strong id="boardTitle"></strong><small id="boardSub"></small></div>
+        <div class="student-card s1"><span class="avatar blue">Т</span><div><b id="name1"></b><small id="role1"></small></div><div class="quote" id="quote1"></div></div>
+        <div class="student-card s2"><span class="avatar green">Д</span><div><b id="name2"></b><small id="role2"></small></div><div class="quote warn" id="quote2"></div></div>
+        <div class="student-card s3"><span class="avatar violet">С</span><div><b id="name3"></b><small id="role3"></small></div><div class="quote" id="quote3"></div></div>
+        <div class="teacher-bubble"><span class="avatar teacher">В</span><div><b id="teacherName"></b><small id="teacherNote"></small></div></div>
+      </div>
+      <aside class="observation-panel">
+        <div class="panel-title" id="knownTitle"></div>
+        <div class="fact"><span>✓</span><p id="known1"></p></div>
+        <div class="fact"><span>✓</span><p id="known2"></p></div>
+        <div class="fact"><span>✓</span><p id="known3"></p></div>
+        <div class="warning"><strong id="unknownLabel"></strong><br><span id="unknownText"></span></div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="work-card" id="stepA">
+    <div class="work-head"><div><span class="section-no" id="secA"></span><h2 id="aTitle"></h2><p id="aText"></p></div></div>
+    <div class="decision-grid" id="aGrid"></div>
+    <div class="reason-box hidden" id="aReasonBox"><label for="aReason" id="aReasonLabel"></label><textarea id="aReason" maxlength="420"></textarea><div class="reason-footer"><span><b id="aChars">0</b> / 420</span><button class="primary" id="toB"></button></div></div>
+  </section>
+
+  <section class="work-card hidden" id="stepB">
+    <div class="work-head"><div><span class="section-no" id="secB"></span><h2 id="bTitle"></h2><p id="bText"></p></div></div>
+    <div class="decision-grid" id="bGrid"></div>
+    <div class="reason-box hidden" id="bReasonBox"><label for="bReason" id="bReasonLabel"></label><textarea id="bReason" maxlength="420"></textarea><div class="reason-footer"><span><b id="bChars">0</b> / 420</span><button class="primary" id="toC"></button></div></div>
+  </section>
+
+  <section class="work-card hidden" id="stepC">
+    <div class="work-head"><div><span class="section-no" id="secC"></span><h2 id="cTitle"></h2><p id="cText"></p></div></div>
+    <div class="decision-grid" id="cGrid"></div>
+    <div class="reason-box hidden" id="cReasonBox"><label for="cReason" id="cReasonLabel"></label><textarea id="cReason" maxlength="420"></textarea><div class="reason-footer"><span><b id="cChars">0</b> / 420</span><button class="primary" id="finishBtn"></button></div></div>
+  </section>
+
+  <section class="result-card hidden" id="resultSection">
+    <div class="result-top"><div><span class="section-no" id="resultLabel"></span><h2 id="resultTitle"></h2><p id="resultText"></p></div><div class="score-circle"><span>4</span><small id="componentLabel"></small></div></div>
+    <div class="profile-grid" id="profileGrid"></div>
+    <div class="result-note"><strong id="methodStrong"></strong> <span id="methodText"></span></div>
+    <button class="secondary" id="resetCase"></button>
+  </section>
+</main>
+<script src="app.js"></script>
+
+<script>
+(function(){
+  const NAV_TEXT={
+    ru:{studentRole:"Студент",labLink:"Лаборатория",profileLinkNav:"Мой профиль",teacherRole:"Преподаватель",teacherLinkNav:"Кабинет"},
+    "uz-lat":{studentRole:"Talaba",labLink:"Laboratoriya",profileLinkNav:"Mening profilim",teacherRole:"O‘qituvchi",teacherLinkNav:"Kabinet"},
+    "uz-cyr":{studentRole:"Талаба",labLink:"Лаборатория",profileLinkNav:"Менинг профилим",teacherRole:"Ўқитувчи",teacherLinkNav:"Кабинет"},
+    en:{studentRole:"Student",labLink:"Laboratory",profileLinkNav:"My profile",teacherRole:"Teacher",teacherLinkNav:"Dashboard"}
+  };
+  function current(){const l=localStorage.getItem("tl_lang")||"ru";return NAV_TEXT[l]?l:"ru"}
+  function paint(){
+    const x=NAV_TEXT[current()];
+    document.querySelectorAll("[data-global]").forEach(el=>{
+      const key=el.getAttribute("data-global"); if(x[key]) el.textContent=x[key];
+    });
+    document.querySelectorAll("[data-page]").forEach(el=>{
+      el.classList.toggle("active",el.getAttribute("data-page")===(document.body.getAttribute("data-page")||"lab"));
+    });
+  }
+  document.addEventListener("DOMContentLoaded",()=>{
+    const sel=document.getElementById("lang")||document.getElementById("languageSelect");
+    if(sel){
+      const shared=localStorage.getItem("tl_lang");
+      if(shared && [...sel.options].some(o=>o.value===shared)) sel.value=shared;
+      sel.addEventListener("change",()=>{localStorage.setItem("tl_lang",sel.value);paint()});
+    }
+    paint();
+  });
+  window.addEventListener("storage",paint);
+})();
+</script>
+</body>
+</html>
