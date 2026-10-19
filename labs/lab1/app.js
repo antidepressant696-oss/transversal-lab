@@ -116,6 +116,411 @@ const CHOICES = [
   }
 ];
 
+const STATIC_I18N = {
+  "brandSubtitle": {
+    "ru": "педагогическая лаборатория",
+    "uz": "pedagogik laboratoriya",
+    "uzc": "педагогик лаборатория",
+    "en": "pedagogical laboratory"
+  },
+  "navLaboratory": {
+    "ru": "Лаборатория",
+    "uz": "Laboratoriya",
+    "uzc": "Лаборатория",
+    "en": "Laboratory"
+  },
+  "navMethod": {
+    "ru": "Методика",
+    "uz": "Metodika",
+    "uzc": "Методика",
+    "en": "Methodology"
+  },
+  "navCompetencies": {
+    "ru": "Компетенции",
+    "uz": "Kompetensiyalar",
+    "uzc": "Компетенциялар",
+    "en": "Competences"
+  },
+  "navAbout": {
+    "ru": "О проекте",
+    "uz": "Loyiha haqida",
+    "uzc": "Лойиҳа ҳақида",
+    "en": "About"
+  },
+  "resetButton": {
+    "ru": "Сбросить",
+    "uz": "Qayta boshlash",
+    "uzc": "Қайта бошлаш",
+    "en": "Reset"
+  },
+  "caseIdLabel": {
+    "ru": "СИТУАЦИЯ / 01",
+    "uz": "VAZIYAT / 01",
+    "uzc": "ВАЗИЯТ / 01",
+    "en": "CASE / 01"
+  },
+  "sceneMinutes": {
+    "ru": "≈ 3 минуты",
+    "uz": "≈ 3 daqiqa",
+    "uzc": "≈ 3 дақиқа",
+    "en": "≈ 3 minutes"
+  },
+  "sceneContext": {
+    "ru": "2 КЛАСС · ГРУППОВАЯ РАБОТА",
+    "uz": "2-SINF · GURUHLI ISH",
+    "uzc": "2-СИНФ · ГУРУҲЛИ ИШ",
+    "en": "GRADE 2 · GROUP WORK"
+  },
+  "sceneTitle": {
+    "ru": "Группа перестала работать",
+    "uz": "Guruhli ish to‘xtab qoldi",
+    "uzc": "Гуруҳли иш тўхтаб қолди",
+    "en": "The group activity has stalled"
+  },
+  "sceneTimeLeft": {
+    "ru": "10 мин",
+    "uz": "10 daq.",
+    "uzc": "10 дақ.",
+    "en": "10 min"
+  },
+  "sceneTask": {
+    "ru": "Задание: создать общий постер",
+    "uz": "Topshiriq: umumiy poster yaratish",
+    "uzc": "Топшириқ: умумий постер яратиш",
+    "en": "Task: create a group poster"
+  },
+  "speechOne": {
+    "ru": "Я больше не хочу.",
+    "uz": "Men endi xohlamayman.",
+    "uzc": "Мен энди хоҳламайман.",
+    "en": "I do not want to continue."
+  },
+  "speechTwo": {
+    "ru": "Дай сюда, ты всё испортил!",
+    "uz": "Buni menga ber, hammasini buzib qo‘yding!",
+    "uzc": "Буни менга бер, ҳаммасини бузиб қўйдинг!",
+    "en": "Give it here, you have ruined everything!"
+  },
+  "speechThree": {
+    "ru": "Мы не успеем.",
+    "uz": "Biz ulgurmaymiz.",
+    "uzc": "Биз улгурмаймиз.",
+    "en": "We will not finish in time."
+  },
+  "teacherRole": {
+    "ru": "Вы — учитель",
+    "uz": "Siz — o‘qituvchisiz",
+    "uzc": "Сиз — ўқитувчисиз",
+    "en": "You are the teacher"
+  },
+  "teacherReason": {
+    "ru": "Причины поведения пока неясны",
+    "uz": "Xatti-harakat sabablari hali noma’lum",
+    "uzc": "Хатти-ҳаракат сабаблари ҳали номаълум",
+    "en": "The reasons for the behaviour are not yet clear"
+  },
+  "observationTitle": {
+    "ru": "Сначала наблюдай",
+    "uz": "Avval kuzating",
+    "uzc": "Аввал кузатинг",
+    "en": "Observe first"
+  },
+  "observationText": {
+    "ru": "Что здесь факт, а что — предположение?",
+    "uz": "Bu vaziyatda nima fakt, nima taxmin?",
+    "uzc": "Бу вазиятда нима факт, нима тахмин?",
+    "en": "What is a fact and what is an assumption?"
+  },
+  "miniCognitive": {
+    "ru": "Когнитивный",
+    "uz": "Kognitiv",
+    "uzc": "Когнитив",
+    "en": "Cognitive"
+  },
+  "miniCommunication": {
+    "ru": "Коммуникация",
+    "uz": "Muloqot",
+    "uzc": "Мулоқот",
+    "en": "Communication"
+  },
+  "miniReflection": {
+    "ru": "Рефлексия",
+    "uz": "Refleksiya",
+    "uzc": "Рефлексия",
+    "en": "Reflection"
+  },
+  "caseStatus": {
+    "ru": "Демонстрация",
+    "uz": "Namoyish",
+    "uzc": "Намойиш",
+    "en": "Demonstration"
+  },
+  "sideContext": {
+    "ru": "КОНТЕКСТ",
+    "uz": "KONTEKST",
+    "uzc": "КОНТЕКСТ",
+    "en": "CONTEXT"
+  },
+  "sideComponents": {
+    "ru": "ЗАДЕЙСТВУЮТСЯ",
+    "uz": "FAOLLASHADIGAN KO‘NIKMALAR",
+    "uzc": "ФАОЛЛАШАДИГАН КЎНИКМАЛАР",
+    "en": "SKILLS INVOLVED"
+  },
+  "tagAnalysis": {
+    "ru": "анализ",
+    "uz": "tahlil",
+    "uzc": "таҳлил",
+    "en": "analysis"
+  },
+  "tagMediation": {
+    "ru": "медиация",
+    "uz": "kelishtirish",
+    "uzc": "келиштириш",
+    "en": "mediation"
+  },
+  "tagDecision": {
+    "ru": "решение",
+    "uz": "qaror",
+    "uzc": "қарор",
+    "en": "decision"
+  },
+  "tagReflection": {
+    "ru": "рефлексия",
+    "uz": "refleksiya",
+    "uzc": "рефлексия",
+    "en": "reflection"
+  },
+  "pathLabel": {
+    "ru": "Путь",
+    "uz": "Yo‘l",
+    "uzc": "Йўл",
+    "en": "Path"
+  },
+  "scenarioLabel": {
+    "ru": "Педагогическая ситуация",
+    "uz": "Pedagogik vaziyat",
+    "uzc": "Педагогик вазият",
+    "en": "Pedagogical situation"
+  },
+  "hintLabel": {
+    "ru": "Подсказка:",
+    "uz": "Eslatma:",
+    "uzc": "Эслатма:",
+    "en": "Hint:"
+  },
+  "hintText": {
+    "ru": "Выберите один из вариантов выше, чтобы продолжить. Несколько решений могут быть допустимыми; важно качество обоснования.",
+    "uz": "Davom etish uchun yuqoridagi variantlardan birini tanlang. Bir nechta yechim maqbul bo‘lishi mumkin; tanlovni asoslash muhim.",
+    "uzc": "Давом этиш учун юқоридаги вариантлардан бирини танланг. Бир нечта ечим мақбул бўлиши мумкин; танловни асослаш муҳим.",
+    "en": "Select one of the options above to continue. Several responses may be acceptable; the quality of the rationale matters."
+  },
+  "resultSectionTitle": {
+    "ru": "Результат — не оценка личности, а профиль следующего шага.",
+    "uz": "Natija — shaxsga baho emas, keyingi qadam profili.",
+    "uzc": "Натижа — шахсга баҳо эмас, кейинги қадам профили.",
+    "en": "The result is not a judgment of the person, but a profile for the next step."
+  },
+  "summaryLabel": {
+    "ru": "СВОДКА",
+    "uz": "XULOSA",
+    "uzc": "ХУЛОСА",
+    "en": "SUMMARY"
+  },
+  "resultTitle": {
+    "ru": "Анализ завершён",
+    "uz": "Tahlil yakunlandi",
+    "uzc": "Таҳлил якунланди",
+    "en": "Analysis complete"
+  },
+  "scoreScale": {
+    "ru": "Шкала 3–2–1",
+    "uz": "3–2–1 shkalasi",
+    "uzc": "3–2–1 шкаласи",
+    "en": "Scale 3–2–1"
+  },
+  "resultText": {
+    "ru": "Это демонстрационный профиль по четырём компонентам. В научной версии оценка будет опираться на диагностические задания и согласованные критерии.",
+    "uz": "Bu to‘rt komponent bo‘yicha namoyish profili. Ilmiy versiyada baholash diagnostik topshiriqlar va kelishilgan mezonlarga asoslanadi.",
+    "uzc": "Бу тўрт компонент бўйича намойиш профили. Илмий версияда баҳолаш диагностик топшириқлар ва келишилган мезонларга асосланади.",
+    "en": "This is a demonstration profile across four components. The research version will use diagnostic tasks and agreed criteria."
+  },
+  "reflectionLabel": {
+    "ru": "РЕФЛЕКСИЯ",
+    "uz": "REFLEKSIYA",
+    "uzc": "РЕФЛЕКСИЯ",
+    "en": "REFLECTION"
+  },
+  "reflectionTitle": {
+    "ru": "Что изменило бы ваш выбор?",
+    "uz": "Tanlovingizni nima o‘zgartirishi mumkin edi?",
+    "uzc": "Танловингизни нима ўзгартириши мумкин эди?",
+    "en": "What might change your choice?"
+  },
+  "reflectionPlaceholder": {
+    "ru": "Например: сначала выслушать участников, затем перераспределить роли…",
+    "uz": "Masalan: avval ishtirokchilarni tinglash, keyin rollarni qayta taqsimlash…",
+    "uzc": "Масалан: аввал иштирокчиларни тинглаш, кейин ролларни қайта тақсимлаш…",
+    "en": "For example: listen to the participants first, then redistribute the roles…"
+  },
+  "saveReflection": {
+    "ru": "Сохранить рефлексию",
+    "uz": "Refleksiyani saqlash",
+    "uzc": "Рефлексияни сақлаш",
+    "en": "Save reflection"
+  },
+  "savedNote": {
+    "ru": "Сохранено в этом браузере ✓",
+    "uz": "Ushbu brauzerda saqlandi ✓",
+    "uzc": "Ушбу браузерда сақланди ✓",
+    "en": "Saved in this browser ✓"
+  },
+  "methodEyebrow": {
+    "ru": "МЕТОДИКА",
+    "uz": "METODIKA",
+    "uzc": "МЕТОДИКА",
+    "en": "METHODOLOGY"
+  },
+  "methodTitle": {
+    "ru": "Цифровая среда повторяет логику методики.",
+    "uz": "Raqamli muhit metodika mantiqini takrorlaydi.",
+    "uzc": "Рақамли муҳит методика мантиғини такрорлайди.",
+    "en": "The digital environment follows the logic of the methodology."
+  },
+  "methodDiagnosis": {
+    "ru": "Диагностика",
+    "uz": "Diagnostika",
+    "uzc": "Диагностика",
+    "en": "Diagnostics"
+  },
+  "methodDiagnosisText": {
+    "ru": "Определить исходный уровень и мотивацию.",
+    "uz": "Boshlang‘ich daraja va motivatsiyani aniqlash.",
+    "uzc": "Бошланғич даража ва мотивацияни аниқлаш.",
+    "en": "Identify the starting level and motivation."
+  },
+  "methodPractice": {
+    "ru": "Практика",
+    "uz": "Amaliyot",
+    "uzc": "Амалиёт",
+    "en": "Practice"
+  },
+  "methodPracticeText": {
+    "ru": "Разобрать реальную или моделируемую ситуацию.",
+    "uz": "Haqiqiy yoki modellashtirilgan vaziyatni tahlil qilish.",
+    "uzc": "Ҳақиқий ёки моделлаштирилган вазиятни таҳлил қилиш.",
+    "en": "Analyse a real or simulated situation."
+  },
+  "methodIntegration": {
+    "ru": "Интеграция и рефлексия",
+    "uz": "Integratsiya va refleksiya",
+    "uzc": "Интеграция ва рефлексия",
+    "en": "Integration and reflection"
+  },
+  "methodIntegrationText": {
+    "ru": "Оценить решение и определить следующий шаг.",
+    "uz": "Qarorni baholash va keyingi qadamni belgilash.",
+    "uzc": "Қарорни баҳолаш ва кейинги қадамни белгилаш.",
+    "en": "Evaluate the decision and define the next step."
+  },
+  "componentSectionLabel": {
+    "ru": "4 КОМПОНЕНТА",
+    "uz": "4 KOMPONENT",
+    "uzc": "4 КОМПОНЕНТ",
+    "en": "4 COMPONENTS"
+  },
+  "componentSectionTitle": {
+    "ru": "Компетенции работают <em>вместе</em>, а не по отдельности.",
+    "uz": "Kompetensiyalar alohida emas, <em>birgalikda</em> ishlaydi.",
+    "uzc": "Компетенциялар алоҳида эмас, <em>биргаликда</em> ишлайди.",
+    "en": "Competences work <em>together</em>, not in isolation."
+  },
+  "componentSectionText": {
+    "ru": "В педагогической ситуации будущий учитель анализирует проблему, взаимодействует с участниками, при необходимости использует цифровые ресурсы и корректирует свои действия.",
+    "uz": "Pedagogik vaziyatda bo‘lajak o‘qituvchi muammoni tahlil qiladi, ishtirokchilar bilan muloqot qiladi, zarur bo‘lsa raqamli resurslardan foydalanadi va harakatlarini tuzatadi.",
+    "uzc": "Педагогик вазиятда бўлажак ўқитувчи муаммони таҳлил қилади, иштирокчилар билан мулоқот қилади, зарур бўлса рақамли ресурслардан фойдаланади ва ҳаракатларини тузатади.",
+    "en": "In a pedagogical situation, a future teacher analyses the problem, interacts with participants, uses digital resources when appropriate and adjusts their actions."
+  },
+  "cognitiveTitle": {
+    "ru": "Когнитивный",
+    "uz": "Kognitiv",
+    "uzc": "Когнитив",
+    "en": "Cognitive"
+  },
+  "cognitiveText": {
+    "ru": "Анализ ситуации, критическое мышление, поиск решений и обоснованный выбор.",
+    "uz": "Vaziyatni tahlil qilish, tanqidiy fikrlash, yechim izlash va asosli tanlov.",
+    "uzc": "Вазиятни таҳлил қилиш, танқидий фикрлаш, ечим излаш ва асосли танлов.",
+    "en": "Situation analysis, critical thinking, solution finding and reasoned choice."
+  },
+  "socialTitle": {
+    "ru": "Социально-коммуникативный",
+    "uz": "Ijtimoiy-kommunikativ",
+    "uzc": "Ижтимоий-коммуникатив",
+    "en": "Socio-communicative"
+  },
+  "socialText": {
+    "ru": "Слушание, взаимодействие, сотрудничество и согласование позиций.",
+    "uz": "Tinglash, o‘zaro hamkorlik va pozitsiyalarni muvofiqlashtirish.",
+    "uzc": "Тинглаш, ўзаро ҳамкорлик ва позицияларни мувофиқлаштириш.",
+    "en": "Listening, interaction, collaboration and aligning positions."
+  },
+  "digitalTitle": {
+    "ru": "Цифровая грамотность",
+    "uz": "Raqamli savodxonlik",
+    "uzc": "Рақамли саводхонлик",
+    "en": "Digital literacy"
+  },
+  "digitalText": {
+    "ru": "Поиск, оценка и целенаправленное использование цифровых ресурсов.",
+    "uz": "Raqamli resurslarni izlash, baholash va maqsadli qo‘llash.",
+    "uzc": "Рақамли ресурсларни излаш, баҳолаш ва мақсадли қўллаш.",
+    "en": "Finding, evaluating and purposefully using digital resources."
+  },
+  "reflectiveTitle": {
+    "ru": "Рефлексивно-регулятивный",
+    "uz": "Refleksiv-regulyativ",
+    "uzc": "Рефлексив-регулятив",
+    "en": "Reflexive-regulatory"
+  },
+  "reflectiveText": {
+    "ru": "Анализ результата, самооценка, корректировка и планирование следующего действия.",
+    "uz": "Natijani tahlil qilish, o‘zini baholash, tuzatish va keyingi harakatni rejalash.",
+    "uzc": "Натижани таҳлил қилиш, ўзини баҳолаш, тузатиш ва кейинги ҳаракатни режалаш.",
+    "en": "Analysing results, self-assessment, adjustment and planning the next action."
+  },
+  "aboutEyebrow": {
+    "ru": "О ПРОЕКТЕ",
+    "uz": "LOYIHA HAQIDA",
+    "uzc": "ЛОЙИҲА ҲАҚИДА",
+    "en": "ABOUT THE PROJECT"
+  },
+  "aboutTitle": {
+    "ru": "Не «ещё одна LMS». <br/><em>Цифровой инструмент исследования.</em>",
+    "uz": "Bu yana bir LMS emas. <br/><em>Tadqiqot uchun raqamli vosita.</em>",
+    "uzc": "Бу яна бир LMS эмас. <br/><em>Тадқиқот учун рақамли восита.</em>",
+    "en": "Not “just another LMS”. <br/><em>A digital research tool.</em>"
+  },
+  "aboutText": {
+    "ru": "Первый MVP не заменяет LMS и не претендует на готовую валидированную диагностическую систему. Он реализует цифровой сценарий методики и готовит основу для апробации на студентах.",
+    "uz": "Dastlabki MVP LMS o‘rnini bosmaydi va tayyor validatsiyalangan diagnostika tizimi sifatida taqdim etilmaydi. U metodikaning raqamli ssenariysini amalga oshiradi va talabalar bilan sinov uchun asos yaratadi.",
+    "uzc": "Дастлабки MVP LMS ўрнини босмайди ва тайёр валидatsияланган диагностика тизими сифатида тақдим этилмайди. У методиканинг рақамли сценарийсини амалга оширади ва талабалар билан синов учун асос яратади.",
+    "en": "The initial MVP does not replace an LMS or claim to be a validated diagnostic system. It implements the methodology as a digital scenario and prepares a basis for student piloting."
+  },
+  "footerText": {
+    "ru": "© 2026 · MVP без серверной части",
+    "uz": "© 2026 · server qismisiz MVP",
+    "uzc": "© 2026 · сервер қисмисиз MVP",
+    "en": "© 2026 · MVP without a server backend"
+  },
+  "teacherInitial": {
+    "ru": "В",
+    "uz": "O",
+    "uzc": "Ў",
+    "en": "T"
+  }
+};
+
 const I18N = {
   ru: {
     eyebrow: "ИНТЕРАКТИВНАЯ ПЕДАГОГИЧЕСКАЯ СИТУАЦИЯ",
@@ -176,6 +581,16 @@ function applyLanguage() {
     const key = el.dataset.i18n;
     el.innerHTML = t(key);
   });
+  document.querySelectorAll("[data-i18n-static]").forEach((el) => {
+    const key = el.dataset.i18nStatic;
+    const value = STATIC_I18N[key]?.[currentLanguage];
+    if (value) el.innerHTML = value;
+  });
+  document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+    const key = el.dataset.i18nPlaceholder;
+    const value = STATIC_I18N[key]?.[currentLanguage];
+    if (value) el.setAttribute("placeholder", value);
+  });
   $("languageSelect").value = currentLanguage;
   $("caseContext").textContent = CASE.context[currentLanguage];
   $("scenarioTitle").textContent = CASE.title[currentLanguage];
@@ -200,7 +615,8 @@ function renderChoices() {
     const button = document.createElement("button");
     button.type = "button";
     button.className = "choice" + (selectedChoice === index ? " selected" : "");
-    button.innerHTML = `<span class="choice-no">ВАРИАНТ 0${index + 1}</span><strong>${choice.text[currentLanguage]}</strong><small>${choice.note[currentLanguage]}</small>`;
+    const optionLabel = {ru:"ВАРИАНТ",uz:"VARIANT",uzc:"ВАРИАНТ",en:"OPTION"}[currentLanguage] || "OPTION";
+    button.innerHTML = `<span class="choice-no">${optionLabel} 0${index + 1}</span><strong>${choice.text[currentLanguage]}</strong><small>${choice.note[currentLanguage]}</small>`;
     button.addEventListener("click", () => {
       selectedChoice = index;
       renderChoices();

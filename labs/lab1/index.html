@@ -17,15 +17,15 @@
         <span class="brand-mark">TL</span>
         <span>
           <strong>Transversal Lab</strong>
-          <small>педагогическая лаборатория</small>
+          <small data-i18n-static="brandSubtitle">педагогическая лаборатория</small>
         </span>
       </a>
 
       <nav class="nav" aria-label="Основная навигация">
-        <a href="#lab">Лаборатория</a>
-        <a href="#method">Методика</a>
-        <a href="#competencies">Компетенции</a>
-        <a href="#about">О проекте</a>
+        <a href="#lab" data-i18n-static="navLaboratory">Лаборатория</a>
+        <a href="#method" data-i18n-static="navMethod">Методика</a>
+        <a href="#competencies" data-i18n-static="navCompetencies">Компетенции</a>
+        <a href="#about" data-i18n-static="navAbout">О проекте</a>
       </nav>
 
       <div class="top-actions">
@@ -46,7 +46,7 @@
             <option value="en">EN</option>
           </select>
         </label>
-        <button class="ghost-btn" id="resetBtn" type="button">Сбросить</button>
+        <button class="ghost-btn" id="resetBtn" type="button" data-i18n-static="resetButton">Сбросить</button>
       </div>
     </header>
 
@@ -69,38 +69,38 @@
         <div class="hero-visual classroom-board" aria-label="Предпросмотр педагогической ситуации">
           <div class="scene-toolbar">
             <span class="scene-dot"></span>
-            <span>CASE 01</span>
-            <span class="scene-time">≈ 3 минуты</span>
+            <span data-i18n-static="caseIdLabel">CASE 01</span>
+            <span class="scene-time" data-i18n-static="sceneMinutes">≈ 3 минуты</span>
           </div>
 
           <div class="scene-header">
             <div>
-              <span class="scene-kicker">2 КЛАСС · ГРУППОВАЯ РАБОТА</span>
-              <h3>Группа перестала работать</h3>
+              <span class="scene-kicker" data-i18n-static="sceneContext">2 КЛАСС · ГРУППОВАЯ РАБОТА</span>
+              <h3 data-i18n-static="sceneTitle">Группа перестала работать</h3>
             </div>
-            <span class="scene-chip">10 мин</span>
+            <span class="scene-chip" data-i18n-static="sceneTimeLeft">10 мин</span>
           </div>
 
           <div class="classroom-scene">
-            <div class="board-note">Задание: создать общий постер</div>
-            <div class="desk desk-left"><span class="avatar avatar-blue">А</span><span class="speech">Я больше не хочу.</span></div>
-            <div class="desk desk-center"><span class="avatar avatar-green">М</span><span class="speech speech-warn">Дай сюда, ты всё испортил!</span></div>
-            <div class="desk desk-right"><span class="avatar avatar-violet">С</span><span class="speech">Мы не успеем.</span></div>
+            <div class="board-note" data-i18n-static="sceneTask">Задание: создать общий постер</div>
+            <div class="desk desk-left"><span class="avatar avatar-blue">А</span><span class="speech" data-i18n-static="speechOne">Я больше не хочу.</span></div>
+            <div class="desk desk-center"><span class="avatar avatar-green">М</span><span class="speech speech-warn" data-i18n-static="speechTwo">Дай сюда, ты всё испортил!</span></div>
+            <div class="desk desk-right"><span class="avatar avatar-violet">С</span><span class="speech" data-i18n-static="speechThree">Мы не успеем.</span></div>
             <div class="teacher-card">
-              <span class="teacher-avatar">В</span>
-              <div><strong>Вы — учитель</strong><small>Причины поведения пока неясны</small></div>
+              <span class="teacher-avatar" data-i18n-static="teacherInitial">В</span>
+              <div><strong data-i18n-static="teacherRole">Вы — учитель</strong><small data-i18n-static="teacherReason">Причины поведения пока неясны</small></div>
             </div>
           </div>
 
           <div class="scene-footer">
             <div class="observation">
               <span class="observation-icon">✓</span>
-              <div><strong>Сначала наблюдай</strong><small>Что в ситуации является фактом, а что — предположением?</small></div>
+              <div><strong data-i18n-static="observationTitle">Сначала наблюдай</strong><small data-i18n-static="observationText">Что в ситуации является фактом, а что — предположением?</small></div>
             </div>
             <div class="component-mini-list">
-              <span>Когнитивный</span>
-              <span>Коммуникация</span>
-              <span>Рефлексия</span>
+              <span data-i18n-static="miniCognitive">Когнитивный</span>
+              <span data-i18n-static="miniCommunication">Коммуникация</span>
+              <span data-i18n-static="miniReflection">Рефлексия</span>
             </div>
           </div>
         </div>
@@ -112,33 +112,33 @@
             <span class="section-index">01 / 03</span>
             <h2 data-i18n="caseTitle">Разберись в ситуации и выбери своё действие.</h2>
           </div>
-          <div class="case-status"><span class="status-dot"></span><span id="caseStatus">Демонстрация</span></div>
+          <div class="case-status"><span class="status-dot"></span><span id="caseStatus" data-i18n-static="caseStatus">Демонстрация</span></div>
         </div>
 
         <div class="case-layout">
           <aside class="case-sidebar">
             <div class="side-card">
-              <div class="side-label">КОНТЕКСТ</div>
+              <div class="side-label" data-i18n-static="sideContext">КОНТЕКСТ</div>
               <p id="caseContext">2 класс · групповая работа · до конца урока 10 минут</p>
             </div>
             <div class="side-card compact">
-              <div class="side-label">ЗАДЕЙСТВУЮТСЯ</div>
+              <div class="side-label" data-i18n-static="sideComponents">ЗАДЕЙСТВУЮТСЯ</div>
               <div class="mini-pills">
-                <span>анализ</span><span>медиация</span><span>решение</span><span>рефлексия</span>
+                <span data-i18n-static="tagAnalysis">анализ</span><span data-i18n-static="tagMediation">медиация</span><span data-i18n-static="tagDecision">решение</span><span data-i18n-static="tagReflection">рефлексия</span>
               </div>
             </div>
             <div class="side-card progress-card">
-              <div class="progress-label"><span>Путь</span><strong id="progressLabel">1 / 3</strong></div>
+              <div class="progress-label"><span data-i18n-static="pathLabel">Путь</span><strong id="progressLabel">1 / 3</strong></div>
               <div class="progress-track"><span id="progressBar"></span></div>
             </div>
           </aside>
 
           <article class="case-card">
             <div class="case-topline">
-              <span class="case-type">CASE / 01</span>
-              <span class="case-time">≈ 3 минуты</span>
+              <span class="case-type" data-i18n-static="caseIdLabel">CASE / 01</span>
+              <span class="case-time" data-i18n-static="sceneMinutes">≈ 3 минуты</span>
             </div>
-            <div class="scenario-badge">Педагогическая ситуация</div>
+            <div class="scenario-badge" data-i18n-static="scenarioLabel">Педагогическая ситуация</div>
             <h3 id="scenarioTitle">Групповая работа остановилась</h3>
             <p id="scenarioText">Во время группового задания один ученик перестал участвовать, второй спорит с одноклассниками, а группа теряет время. Вы понимаете, что немедленное вмешательство необходимо, но причины поведения пока неясны.</p>
 
@@ -146,7 +146,7 @@
             <div class="choices" id="choices"></div>
 
             <div class="case-footer">
-              <span class="hint">Подсказка: <span id="hintText">несколько решений могут быть педагогически допустимыми; оценивается качество выбора и обоснования.</span></span>
+              <span class="hint"><span data-i18n-static="hintLabel">Подсказка:</span> <span id="hintText" data-i18n-static="hintText">Выберите один из вариантов выше, чтобы продолжить. Несколько решений могут быть допустимыми; важно качество обоснования.</span></span>
               <button class="secondary-btn" id="nextBtn" type="button" disabled>Продолжить →</button>
             </div>
           </article>
@@ -157,7 +157,7 @@
         <div class="result-head">
           <div>
             <span class="section-index">02 / 03</span>
-            <h2>Результат — не оценка личности, а профиль следующего шага.</h2>
+            <h2 data-i18n-static="resultSectionTitle">Результат — не оценка личности, а профиль следующего шага.</h2>
           </div>
           <div class="score-badge" id="overallScore">—</div>
         </div>
@@ -166,21 +166,21 @@
           <div class="result-main glass-card">
             <div class="result-main-top">
               <div>
-                <div class="side-label">СВОДКА</div>
-                <h3 id="resultTitle">Анализ завершён</h3>
+                <div class="side-label" data-i18n-static="summaryLabel">СВОДКА</div>
+                <h3 id="resultTitle" data-i18n-static="resultTitle">Анализ завершён</h3>
               </div>
-              <span class="score-scale">Шкала 3–2–1</span>
+              <span class="score-scale" data-i18n-static="scoreScale">Шкала 3–2–1</span>
             </div>
-            <p id="resultText">Вы получили демонстрационный профиль по четырём компонентам. В реальной версии оценки будут основаны на валидированных диагностических заданиях.</p>
+            <p id="resultText" data-i18n-static="resultText">Вы получили демонстрационный профиль по четырём компонентам. В реальной версии оценки будут основаны на валидированных диагностических заданиях.</p>
             <div class="bars" id="bars"></div>
           </div>
 
           <div class="reflection-card glass-card">
-            <div class="side-label">РЕФЛЕКСИЯ</div>
-            <h3>Что изменило бы ваш выбор?</h3>
-            <textarea id="reflection" placeholder="Например: я бы сначала выслушал участников, а затем перераспределил роли…"></textarea>
-            <button class="primary-btn small" id="saveReflection" type="button">Сохранить рефлексию</button>
-            <div class="saved-note hidden" id="savedNote">Сохранено локально в браузере ✓</div>
+            <div class="side-label" data-i18n-static="reflectionLabel">РЕФЛЕКСИЯ</div>
+            <h3 data-i18n-static="reflectionTitle">Что изменило бы ваш выбор?</h3>
+            <textarea id="reflection" data-i18n-placeholder="reflectionPlaceholder" placeholder="Например: я бы сначала выслушал участников, а затем перераспределил роли…"></textarea>
+            <button class="primary-btn small" id="saveReflection" type="button" data-i18n-static="saveReflection">Сохранить рефлексию</button>
+            <div class="saved-note hidden" id="savedNote" data-i18n-static="savedNote">Сохранено локально в браузере ✓</div>
           </div>
         </div>
       </section>
@@ -188,48 +188,48 @@
       <section class="method-section" id="method">
         <div class="section-heading">
           <div>
-            <span class="section-index">03 / 03</span>
-            <h2>Цифровая оболочка повторяет логику методики.</h2>
+            <span class="section-index" data-i18n-static="methodEyebrow">МЕТОДИКА</span>
+            <h2 data-i18n-static="methodTitle">Цифровая среда повторяет логику методики.</h2>
           </div>
         </div>
 
         <div class="method-flow">
-          <div class="flow-step active"><span>01</span><strong>Диагностика</strong><small>Понять исходный уровень и мотивацию.</small></div>
+          <div class="flow-step active"><span>01</span><strong data-i18n-static="methodDiagnosis">Диагностика</strong><small data-i18n-static="methodDiagnosisText">Понять исходный уровень и мотивацию.</small></div>
           <div class="flow-arrow">→</div>
-          <div class="flow-step"><span>02</span><strong>Практика</strong><small>Разобрать реальную или моделируемую ситуацию.</small></div>
+          <div class="flow-step"><span>02</span><strong data-i18n-static="methodPractice">Практика</strong><small data-i18n-static="methodPracticeText">Разобрать реальную или моделируемую ситуацию.</small></div>
           <div class="flow-arrow">→</div>
-          <div class="flow-step"><span>03</span><strong>Интеграция и рефлексия</strong><small>Оценить решение и определить следующий шаг.</small></div>
+          <div class="flow-step"><span>03</span><strong data-i18n-static="methodIntegration">Интеграция и рефлексия</strong><small data-i18n-static="methodIntegrationText">Оценить решение и определить следующий шаг.</small></div>
         </div>
       </section>
 
       <section class="competency-section" id="competencies">
         <div class="competency-intro">
-          <span class="section-index">4 КОМПОНЕНТА</span>
-          <h2>Компетенции работают <em>вместе</em>, а не по отдельности.</h2>
-          <p>В профессиональной ситуации будущий учитель одновременно анализирует проблему, взаимодействует с участниками, при необходимости использует цифровые ресурсы и корректирует собственные действия.</p>
+          <span class="section-index" data-i18n-static="componentSectionLabel">4 КОМПОНЕНТА</span>
+          <h2 data-i18n-static="componentSectionTitle">Компетенции работают <em>вместе</em>, а не по отдельности.</h2>
+          <p data-i18n-static="componentSectionText">В профессиональной ситуации будущий учитель одновременно анализирует проблему, взаимодействует с участниками, при необходимости использует цифровые ресурсы и корректирует собственные действия.</p>
         </div>
         <div class="competency-grid">
-          <article class="comp-card comp-1"><span>01</span><h3>Когнитивный</h3><p>анализ ситуации, критическое мышление, поиск решений, обоснованный выбор.</p></article>
-          <article class="comp-card comp-2"><span>02</span><h3>Социально-коммуникативный</h3><p>слушание, взаимодействие, сотрудничество, согласование позиций.</p></article>
-          <article class="comp-card comp-3"><span>03</span><h3>Цифровая грамотность</h3><p>поиск, оценка и целенаправленное использование цифровых ресурсов.</p></article>
-          <article class="comp-card comp-4"><span>04</span><h3>Рефлексивно-регулятивный</h3><p>анализ результата, самооценка, корректировка и планирование следующего действия.</p></article>
+          <article class="comp-card comp-1"><span>01</span><h3 data-i18n-static="cognitiveTitle">Когнитивный</h3><p data-i18n-static="cognitiveText">анализ ситуации, критическое мышление, поиск решений, обоснованный выбор.</p></article>
+          <article class="comp-card comp-2"><span>02</span><h3 data-i18n-static="socialTitle">Социально-коммуникативный</h3><p data-i18n-static="socialText">слушание, взаимодействие, сотрудничество, согласование позиций.</p></article>
+          <article class="comp-card comp-3"><span>03</span><h3 data-i18n-static="digitalTitle">Цифровая грамотность</h3><p data-i18n-static="digitalText">поиск, оценка и целенаправленное использование цифровых ресурсов.</p></article>
+          <article class="comp-card comp-4"><span>04</span><h3 data-i18n-static="reflectiveTitle">Рефлексивно-регулятивный</h3><p data-i18n-static="reflectiveText">анализ результата, самооценка, корректировка и планирование следующего действия.</p></article>
         </div>
       </section>
 
       <section class="about-section" id="about">
         <div class="about-card">
           <div>
-            <span class="section-index">О ПРОЕКТЕ</span>
-            <h2>Не «ещё одна LMS». <br/><em>Цифровой инструмент исследования.</em></h2>
+            <span class="section-index" data-i18n-static="aboutEyebrow">О ПРОЕКТЕ</span>
+            <h2 data-i18n-static="aboutTitle">Не «ещё одна LMS». <br/><em>Цифровой инструмент исследования.</em></h2>
           </div>
-          <p>Первый MVP не заменяет LMS и не претендует на готовую валидированную диагностическую систему. Его задача — реализовать цифровой сценарий методики и подготовить основу для апробации на студентах.</p>
+          <p data-i18n-static="aboutText">Первый MVP не заменяет LMS и не претендует на готовую валидированную диагностическую систему. Его задача — реализовать цифровой сценарий методики и подготовить основу для апробации на студентах.</p>
         </div>
       </section>
     </main>
 
     <footer class="footer">
       <div class="brand footer-brand"><span class="brand-mark">TL</span><span><strong>Transversal Lab</strong><small>research prototype · v0.1</small></span></div>
-      <span>© 2026 · MVP без серверной части</span>
+      <span data-i18n-static="footerText">© 2026 · MVP без серверной части</span>
     </footer>
   </div>
 
