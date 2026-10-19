@@ -47,7 +47,7 @@
         <div class="student-card s1"><span class="avatar blue">Т</span><div><b id="name1"></b><small id="role1"></small></div><div class="quote" id="quote1"></div></div>
         <div class="student-card s2"><span class="avatar green">Д</span><div><b id="name2"></b><small id="role2"></small></div><div class="quote warn" id="quote2"></div></div>
         <div class="student-card s3"><span class="avatar violet">С</span><div><b id="name3"></b><small id="role3"></small></div><div class="quote" id="quote3"></div></div>
-        <div class="teacher-bubble"><span class="avatar teacher">В</span><div><b id="teacherName"></b><small id="teacherNote"></small></div></div>
+        <div class="teacher-bubble"><span class="avatar teacher" data-teacher-initial>В</span><div><b id="teacherName"></b><small id="teacherNote"></small></div></div>
       </div>
       <aside class="observation-panel">
         <div class="panel-title" id="knownTitle"></div>
@@ -89,10 +89,10 @@
 <script>
 (function(){
   const NAV_TEXT={
-    ru:{studentRole:"Студент",labLink:"Лаборатория",profileLinkNav:"Мой профиль",teacherRole:"Преподаватель",teacherLinkNav:"Кабинет"},
-    "uz-lat":{studentRole:"Talaba",labLink:"Laboratoriya",profileLinkNav:"Mening profilim",teacherRole:"O‘qituvchi",teacherLinkNav:"Kabinet"},
-    "uz-cyr":{studentRole:"Талаба",labLink:"Лаборатория",profileLinkNav:"Менинг профилим",teacherRole:"Ўқитувчи",teacherLinkNav:"Кабинет"},
-    en:{studentRole:"Student",labLink:"Laboratory",profileLinkNav:"My profile",teacherRole:"Teacher",teacherLinkNav:"Dashboard"}
+    ru:{studentRole:"Студент",labLink:"Лаборатория",profileLinkNav:"Мой профиль",teacherRole:"Преподаватель",teacherLinkNav:"Кабинет",teacherInitial:"В"},
+    "uz-lat":{studentRole:"Talaba",labLink:"Laboratoriya",profileLinkNav:"Mening profilim",teacherRole:"O‘qituvchi",teacherLinkNav:"Kabinet",teacherInitial:"O"},
+    "uz-cyr":{studentRole:"Талаба",labLink:"Лаборатория",profileLinkNav:"Менинг профилим",teacherRole:"Ўқитувчи",teacherLinkNav:"Кабинет",teacherInitial:"Ў"},
+    en:{studentRole:"Student",labLink:"Laboratory",profileLinkNav:"My profile",teacherRole:"Teacher",teacherLinkNav:"Dashboard",teacherInitial:"T"}
   };
   function current(){const l=localStorage.getItem("tl_lang")||"ru";return NAV_TEXT[l]?l:"ru"}
   function paint(){
@@ -100,6 +100,7 @@
     document.querySelectorAll("[data-global]").forEach(el=>{
       const key=el.getAttribute("data-global"); if(x[key]) el.textContent=x[key];
     });
+    document.querySelectorAll("[data-teacher-initial]").forEach(el=>{if(x.teacherInitial) el.textContent=x.teacherInitial;});
     document.querySelectorAll("[data-page]").forEach(el=>{
       el.classList.toggle("active",el.getAttribute("data-page")===(document.body.getAttribute("data-page")||"lab"));
     });
