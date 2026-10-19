@@ -115,25 +115,25 @@
 </header>
 
 <main>
-<div id="defenseDemo" style="margin:0 0 22px;padding:14px 16px;border:1px solid #cfe5e1;background:#eef7f4;border-radius:14px;color:#355b56;font-size:13px;line-height:1.5">
-      <strong>Демонстрационная версия для защиты:</strong>
-      сайт открыт для просмотра без регистрации.
-      <a href="profile.html" style="margin-left:8px;color:#2f7d73;font-weight:750">Мой профиль</a>
-      <a href="teacher.html" style="margin-left:8px;color:#2f7d73;font-weight:750">Кабинет</a>
-    </div>
   <section class="methodic-download" aria-labelledby="methodicTitle">
     <div class="methodic-copy">
-      <strong id="methodicTitle"></strong>
-      <p id="methodicDescription"></p>
+      <strong id="methodicTitle">Transversal Lab metodik majmuasi</strong>
+      <p id="methodicDescription">Bo‘lajak boshlang‘ich sinf o‘qituvchilarining transversal kompetensiyalarini rivojlantirish uchun 6 modulli majmua.</p>
     </div>
-    <a class="download-btn" id="methodicDownload" href="Metodik_majmua.pdf" download="Metodik_majmua.pdf"></a>
+    <a class="download-btn" id="methodicDownload" href="Metodik_majmua.pdf" download="Metodik_majmua.pdf">PDF yuklab olish</a>
   </section>
+  <div id="defenseDemo" style="margin:0 0 22px;padding:14px 16px;border:1px solid #cfe5e1;background:#eef7f4;border-radius:14px;color:#355b56;font-size:13px;line-height:1.5">
+      <strong id="demoTitle">Ҳимоя учун намойиш версияси:</strong>
+      <span id="demoText"> Сайт рўйхатдан ўтмасдан кўриш учун очиқ.</span>
+      <a id="demoProfile" href="profile.html" style="margin-left:8px;color:#2f7d73;font-weight:750">Менинг профилим</a>
+      <a id="demoTeacher" href="teacher.html" style="margin-left:8px;color:#2f7d73;font-weight:750">Ўқитувчи кабинети</a>
+    </div>
+  <section class="grid" id="labs"></section>
+
   <div class="notice">
     <strong id="noticeTitle"></strong>
     <span id="noticeText"></span>
   </div>
-
-  <section class="grid" id="labs"></section>
 
   <section class="profile">
     <h2 id="profileTitle"></h2>
@@ -150,6 +150,7 @@ const T = {
     title:"Единая педагогическая лаборатория",
     lead:"Цифровая среда для практической работы с трансверсальными компетенциями будущих учителей начальных классов.",
     langLabel:"Язык", profileLink:"Мой профиль",
+    demoTitle:"Демонстрационная версия для защиты:", demoText:" Сайт открыт для просмотра без регистрации.", demoProfile:"Мой профиль", demoTeacher:"Кабинет",
     methodicTitle:"Методический комплекс Transversal Lab",
     methodicDescription:"6 модулей для развития трансверсальных компетенций будущих учителей начальных классов.",
     methodicButton:"Скачать PDF",
@@ -176,6 +177,7 @@ const T = {
     title:"Yagona pedagogik laboratoriya",
     lead:"Bo‘lajak boshlang‘ich sinf o‘qituvchilarining transversal kompetensiyalari bilan amaliy ishlash uchun raqamli muhit.",
     langLabel:"Til", profileLink:"Mening profilim",
+    demoTitle:"Himoya uchun namoyish versiyasi:", demoText:" Sayt ro‘yxatdan o‘tmasdan ko‘rish uchun ochiq.", demoProfile:"Mening profilim", demoTeacher:"O‘qituvchi kabineti",
     methodicTitle:"Transversal Lab metodik majmuasi",
     methodicDescription:"Bo‘lajak boshlang‘ich sinf o‘qituvchilarining transversal kompetensiyalarini rivojlantirish uchun 6 modulli majmua.",
     methodicButton:"PDF yuklab olish",
@@ -202,6 +204,7 @@ const T = {
     title:"Ягона педагогик лаборатория",
     lead:"Бўлажак бошланғич синф ўқитувчиларининг трансверсал компетенциялари билан амалий ишлаш учун рақамли муҳит.",
     langLabel:"Тил", profileLink:"Менинг профилим",
+    demoTitle:"Ҳимоя учун намойиш версияси:", demoText:" Сайт рўйхатдан ўтмасдан кўриш учун очиқ.", demoProfile:"Менинг профилим", demoTeacher:"Ўқитувчи кабинети",
     methodicTitle:"Transversal Lab методик мажмуаси",
     methodicDescription:"Бўлажак бошланғич синф ўқитувчиларининг трансверсал компетенцияларини ривожлантириш учун 6 модулли мажмуа.",
     methodicButton:"PDF юклаб олиш",
@@ -228,6 +231,7 @@ const T = {
     title:"Unified Pedagogical Laboratory",
     lead:"A digital environment for practical work with transversal competences of future primary school teachers.",
     langLabel:"Language", profileLink:"My profile",
+    demoTitle:"Defense demonstration version:", demoText:" The site is open for viewing without registration.", demoProfile:"My profile", demoTeacher:"Teacher dashboard",
     methodicTitle:"Transversal Lab methodological package",
     methodicDescription:"A six-module package for developing transversal competences of future primary school teachers.",
     methodicButton:"Download PDF",
@@ -261,6 +265,10 @@ function render(lang){
   document.getElementById("methodicTitle").textContent=t.methodicTitle;
   document.getElementById("methodicDescription").textContent=t.methodicDescription;
   document.getElementById("methodicDownload").textContent=t.methodicButton;
+  document.getElementById("demoTitle").textContent=t.demoTitle;
+  document.getElementById("demoText").textContent=t.demoText;
+  document.getElementById("demoProfile").textContent=t.demoProfile;
+  document.getElementById("demoTeacher").textContent=t.demoTeacher;
 
   document.getElementById("noticeTitle").textContent=t.noticeTitle;
   document.getElementById("noticeText").textContent=t.noticeText;
@@ -299,7 +307,7 @@ document.getElementById("lang").addEventListener("change",e=>render(e.target.val
   const NAV_TEXT={
     ru:{studentRole:"Студент",labLink:"Лаборатория",profileLinkNav:"Мой профиль",teacherRole:"Преподаватель",teacherLinkNav:"Кабинет"},
     "uz-lat":{studentRole:"Talaba",labLink:"Laboratoriya",profileLinkNav:"Mening profilim",teacherRole:"O‘qituvchi",teacherLinkNav:"Kabinet"},
-    "uz-cyr":{studentRole:"Талаба",labLink:"Лаборатория",profileLinkNav:"Менинг профилим",teacherRole:"Ўқитувчи",teacherLinkNav:"Кабинет"},
+    "uz-cyr":{studentRole:"Талаба",labLink:"Лаборатория",profileLinkNav:"Менинг профилим",teacherRole:"Ўқитувчи",teacherLinkNav:"Ўқитувчи кабинети"},
     en:{studentRole:"Student",labLink:"Laboratory",profileLinkNav:"My profile",teacherRole:"Teacher",teacherLinkNav:"Dashboard"}
   };
   function current(){const l=localStorage.getItem("tl_lang")||"ru";return NAV_TEXT[l]?l:"ru"}
