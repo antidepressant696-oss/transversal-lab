@@ -22,6 +22,12 @@
     select{width:100%;border:1px solid var(--line);border-radius:10px;padding:9px 12px;background:#fff;color:var(--text)}
     main{max-width:1120px;margin:0 auto;padding:0 20px 48px}
     .notice{background:var(--soft);border:1px solid #cfe5e1;border-radius:16px;padding:18px 20px;margin:18px 0 28px;line-height:1.55}
+    .methodic-download{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px 20px;margin:0 0 22px;background:#fff;border:1px solid var(--line);border-radius:16px}
+    .methodic-copy{min-width:0}
+    .methodic-copy strong{display:block;margin-bottom:5px;font-size:16px}
+    .methodic-copy p{margin:0;color:var(--muted);font-size:14px;line-height:1.5}
+    .download-btn{flex:none;display:inline-flex;align-items:center;justify-content:center;padding:11px 16px;border-radius:10px;background:var(--accent);color:#fff;text-decoration:none;font-weight:750;white-space:nowrap}
+    .download-btn:hover{background:#286d64}
     .notice strong{display:block;margin-bottom:6px}
     .grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
     .card{grid-column:span 2;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px;display:flex;flex-direction:column;min-height:282px}
@@ -48,6 +54,7 @@
     @media(max-width:560px){
       h1{font-size:29px}
       .row{grid-template-columns:1fr}
+      .methodic-download{align-items:flex-start;flex-direction:column}
     }
   
 /* ===== Global role navigation ===== */
@@ -114,6 +121,13 @@
       <a href="profile.html" style="margin-left:8px;color:#2f7d73;font-weight:750">Мой профиль</a>
       <a href="teacher.html" style="margin-left:8px;color:#2f7d73;font-weight:750">Кабинет</a>
     </div>
+  <section class="methodic-download" aria-labelledby="methodicTitle">
+    <div class="methodic-copy">
+      <strong id="methodicTitle"></strong>
+      <p id="methodicDescription"></p>
+    </div>
+    <a class="download-btn" id="methodicDownload" href="Metodik_majmua.pdf" download="Metodik_majmua.pdf"></a>
+  </section>
   <div class="notice">
     <strong id="noticeTitle"></strong>
     <span id="noticeText"></span>
@@ -136,6 +150,9 @@ const T = {
     title:"Единая педагогическая лаборатория",
     lead:"Цифровая среда для практической работы с трансверсальными компетенциями будущих учителей начальных классов.",
     langLabel:"Язык", profileLink:"Мой профиль",
+    methodicTitle:"Методический комплекс Transversal Lab",
+    methodicDescription:"6 модулей для развития трансверсальных компетенций будущих учителей начальных классов.",
+    methodicButton:"Скачать PDF",
     noticeTitle:"Как устроена лаборатория",
     noticeText:"Каждый Lab является практическим модулем. Сейчас модули не присваивают итоговый научный балл: они фиксируют наблюдаемые действия студента, чтобы позднее объединить их в единую диагностическую систему.",
     profileTitle:"Будущий профиль студента",
@@ -159,6 +176,9 @@ const T = {
     title:"Yagona pedagogik laboratoriya",
     lead:"Bo‘lajak boshlang‘ich sinf o‘qituvchilarining transversal kompetensiyalari bilan amaliy ishlash uchun raqamli muhit.",
     langLabel:"Til", profileLink:"Mening profilim",
+    methodicTitle:"Transversal Lab metodik majmuasi",
+    methodicDescription:"Bo‘lajak boshlang‘ich sinf o‘qituvchilarining transversal kompetensiyalarini rivojlantirish uchun 6 modulli majmua.",
+    methodicButton:"PDF yuklab olish",
     noticeTitle:"Laboratoriya qanday ishlaydi",
     noticeText:"Har bir Lab amaliy modul hisoblanadi. Hozircha modullar yakuniy ilmiy ball bermaydi: ular talabaning kuzatiladigan harakatlarini qayd etadi va keyinchalik yagona diagnostika tizimiga birlashtiriladi.",
     profileTitle:"Talabaning kelajakdagi profili",
@@ -182,6 +202,9 @@ const T = {
     title:"Ягона педагогик лаборатория",
     lead:"Бўлажак бошланғич синф ўқитувчиларининг трансверсал компетенциялари билан амалий ишлаш учун рақамли муҳит.",
     langLabel:"Тил", profileLink:"Менинг профилим",
+    methodicTitle:"Transversal Lab методик мажмуаси",
+    methodicDescription:"Бўлажак бошланғич синф ўқитувчиларининг трансверсал компетенцияларини ривожлантириш учун 6 модулли мажмуа.",
+    methodicButton:"PDF юклаб олиш",
     noticeTitle:"Лаборатория қандай ишлайди",
     noticeText:"Ҳар бир Lab амалий модул ҳисобланади. Ҳозирча модуллар якуний илмий балл бермайди: улар талабанинг кузатиладиган ҳаракатларини қайд этади ва кейинчалик ягона диагностика тизимига бирлаштирилади.",
     profileTitle:"Талабанинг келажакдаги профили",
@@ -205,6 +228,9 @@ const T = {
     title:"Unified Pedagogical Laboratory",
     lead:"A digital environment for practical work with transversal competences of future primary school teachers.",
     langLabel:"Language", profileLink:"My profile",
+    methodicTitle:"Transversal Lab methodological package",
+    methodicDescription:"A six-module package for developing transversal competences of future primary school teachers.",
+    methodicButton:"Download PDF",
     noticeTitle:"How the laboratory works",
     noticeText:"Each Lab is a practical module. At this stage, the modules do not assign a final scientific score: they capture observable student actions that will later be integrated into one diagnostic system.",
     profileTitle:"Future student profile",
@@ -232,6 +258,9 @@ function render(lang){
   document.getElementById("title").textContent=t.title;
   document.getElementById("lead").textContent=t.lead;
   document.getElementById("langLabel").textContent=t.langLabel;
+  document.getElementById("methodicTitle").textContent=t.methodicTitle;
+  document.getElementById("methodicDescription").textContent=t.methodicDescription;
+  document.getElementById("methodicDownload").textContent=t.methodicButton;
 
   document.getElementById("noticeTitle").textContent=t.noticeTitle;
   document.getElementById("noticeText").textContent=t.noticeText;
